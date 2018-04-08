@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]//添加一个默认渠道号
     }
     buildTypes {
         release {
@@ -17,6 +18,59 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        release {
+            storeFile file('E:\\debug.keystore');
+            keyAlias "AndroidDebugKey"
+            keyPassword "android"
+        }
+        debug {
+//            storeFile file('E:\\appkey\\debug.keystore')
+        }
+    }
+    productFlavors {  //在这里添加你所有需要打包的渠道
+        //app360 {}
+        yingyongbao {}
+        baidu {}
+        app91 {}
+        anzhuoshichang {}
+        wandoujia {}
+        yingyongbao {}
+        baidu {}
+        app91 {}
+    }
+    //添加如下代码
+    productFlavors.all { flavors ->
+        flavors.manifestPlaceholders = [CHANNEL_VALUE: name]
+    }
+
+    //修改生成的apk名字
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def oldFile = output.outputFile
+            def newName = '';
+            if (variant.buildType.name.equals('release')) {
+                println(variant.productFlavors[0].name)
+                def releaseApkName = 'android-v' + defaultConfig.versionName + '-' + variant.productFlavors[0].name + '-sign-xtc.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+            if (variant.buildType.name.equals('beta')) {
+                newName = oldFile.name.replace(".apk", "-v" + defaultConfig.versionName + "-build" + getDate() + ".apk")
+                output.outputFile = new File(oldFile.parent, newName)
+            }
+            if (variant.buildType.name.equals('debug')) {
+                println(variant.productFlavors[0].name)
+                def releaseApkName = 'yzxxzx-android-v' + defaultConfig.versionName + '-' + variant.productFlavors[0].name + '-debug-xtc.apk'
+                output.outputFile = new File(oldFile.parent, releaseApkName)
+            }
+        }
+    }
+}
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
 }
 
 dependencies {
@@ -27,4 +81,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }
