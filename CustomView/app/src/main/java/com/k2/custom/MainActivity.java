@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //关联后修改
         /**
          * 分支代码   dr
+		 //new
          */
         setContentView(R.layout.activity_main);
         Button btn = (Button) findViewById(R.id.btn);
