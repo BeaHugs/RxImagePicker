@@ -11,7 +11,7 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 - 支持自动权限管理(无需关心SD卡及摄像头权限等问题) 
 - 支持AndroidX
 
-**2、调起图片选择器**
+**2、权限配置**
 
    ```xml
    //储存卡的读写权限
@@ -19,7 +19,33 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
    //调用相机权限
    <uses-permission android:name="android.permission.CAMERA" />
-    //java
+
+
+<!-- Android 7.0 文件共享配置，1.7.0之前必须配置，1.7.0后不需要 -->
+<provider
+    android:name="android.support.v4.content.FileProvider"
+    android:authorities="${applicationId}.fileprovider"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+</provider>
+
+在res/xml文件夹下创建file_paths.xml文件(名字可以自己定义)
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <!-- 这个是保存拍照图片的路径,必须配置。 -->
+    <external-path
+        name="images"
+        path="Pictures" />
+</paths>
+```
+
+
+**3、代码调用 几行代码**
+    ```java
     //使用方法
     ImageSelector.builder()
                         .useCamera(add_camera.isChecked()) // 使用拍照
