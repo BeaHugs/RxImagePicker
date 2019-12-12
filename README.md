@@ -4,11 +4,8 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 
 ## 效果图
 
-
-| ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144442.png)  | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144501.png) | ![预览](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144522.png) | ![预览1](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png)
-
-
-
+| ------------ | ------------- |------------ | ------------- |
+| ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144442.png) | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144501.png)  | ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144522.png) | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png) |
 
 
 **V1.0**
