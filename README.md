@@ -13,7 +13,7 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 
 **2、调起图片选择器**
 
-   //xml
+   ```xml
    //储存卡的读写权限
    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -39,3 +39,4 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
             mAdapter.refresh(images);
         }
     }
+```
