@@ -34,9 +34,8 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && data != null) {
+            //数据回传
             ArrayList<String> images = data.getStringArrayListExtra(ImageSelector.SELECT_RESULT);
-            boolean isCameraImage = data.getBooleanExtra(ImageSelector.IS_CAMERA_IMAGE, false);
-            mAdapter.refresh(images);
         }
     }
 ```
