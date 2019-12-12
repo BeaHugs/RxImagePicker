@@ -1,6 +1,15 @@
 # RxImagePicker
 Android图片选择器、支持AndroidX，支持图片的单选、多选、图片预览、图片文件夹切换、相机拍照、图片裁剪
 
+
+## 效果图与示例 apk
+
+
+![1](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144442.png)  ![2](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144501.png)  ![3](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144522.png)  ![4](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png)  
+
+
+
+
 **V1.0**
 
 - 支持通过相机拍照获取图片
