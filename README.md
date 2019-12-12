@@ -45,7 +45,9 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 
 
 **3、代码调用 几行代码**
-    ```java
+
+```
+    //java
     //使用方法
     ImageSelector.builder()
                         .useCamera(add_camera.isChecked()) // 使用拍照
@@ -64,4 +66,5 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
             ArrayList<String> images = data.getStringArrayListExtra(ImageSelector.SELECT_RESULT);
         }
     }
+    
 ```
