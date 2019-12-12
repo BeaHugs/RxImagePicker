@@ -9,6 +9,18 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            storePassword "123123"
+            storeFile file("E:\\AndroidP\\RxImagePicker\\androidjks.jks");
+            keyAlias "key0"
+            keyPassword "123123"
+        }
+        debug {
+
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false

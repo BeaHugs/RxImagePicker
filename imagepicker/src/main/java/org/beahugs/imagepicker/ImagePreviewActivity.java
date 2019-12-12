@@ -39,7 +39,7 @@ import static android.animation.ObjectAnimator.ofFloat;
  * @Author: wangyibo
  * @Version: 1.0
  */
-public class PreviewActivity extends AppCompatActivity {
+public class ImagePreviewActivity extends AppCompatActivity {
 
     private MyViewPager vpImage;
     private TextView tvIndicator;
@@ -70,7 +70,7 @@ public class PreviewActivity extends AppCompatActivity {
                                     int maxSelectCount, int position) {
         tempImages = images;
         tempSelectImages = selectImages;
-        Intent intent = new Intent(activity, PreviewActivity.class);
+        Intent intent = new Intent(activity, ImagePreviewActivity.class);
         intent.putExtra(ImageSelector.MAX_SELECT_COUNT, maxSelectCount);
         intent.putExtra(ImageSelector.IS_SINGLE, isSingle);
         intent.putExtra(ImageSelector.POSITION, position);

@@ -30,7 +30,7 @@ import java.util.Locale;
  * @Author: wangyibo
  * @Version: 1.0
  */
-public class ClipImageActivity extends Activity {
+public class ImageClipActivity extends Activity {
 
     private FrameLayout btnConfirm;
     private FrameLayout btnBack;
@@ -138,7 +138,7 @@ public class ClipImageActivity extends Activity {
      * @param config
      */
     public static void openActivity(Activity activity, int requestCode, RequestConfig config) {
-        Intent intent = new Intent(activity, ClipImageActivity.class);
+        Intent intent = new Intent(activity, ImageClipActivity.class);
         intent.putExtra(ImageSelector.KEY_CONFIG, config);
         activity.startActivityForResult(intent, requestCode);
     }
@@ -151,7 +151,7 @@ public class ClipImageActivity extends Activity {
      * @param config
      */
     public static void openActivity(Fragment fragment, int requestCode, RequestConfig config) {
-        Intent intent = new Intent(fragment.getActivity(), ClipImageActivity.class);
+        Intent intent = new Intent(fragment.getActivity(), ImageClipActivity.class);
         intent.putExtra(ImageSelector.KEY_CONFIG, config);
         fragment.startActivityForResult(intent, requestCode);
     }
@@ -164,7 +164,7 @@ public class ClipImageActivity extends Activity {
      * @param config
      */
     public static void openActivity(android.app.Fragment fragment, int requestCode, RequestConfig config) {
-        Intent intent = new Intent(fragment.getActivity(), ClipImageActivity.class);
+        Intent intent = new Intent(fragment.getActivity(), ImageClipActivity.class);
         intent.putExtra(ImageSelector.KEY_CONFIG, config);
         fragment.startActivityForResult(intent, requestCode);
     }

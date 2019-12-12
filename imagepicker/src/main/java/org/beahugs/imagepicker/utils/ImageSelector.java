@@ -6,7 +6,7 @@ import android.content.Context;
 import androidx.fragment.app.Fragment;
 
 
-import org.beahugs.imagepicker.ClipImageActivity;
+import org.beahugs.imagepicker.ImageClipActivity;
 import org.beahugs.imagepicker.ImageSelectorActivity;
 import org.beahugs.imagepicker.entry.RequestConfig;
 import org.beahugs.imagepicker.model.ImageModel;
@@ -181,7 +181,7 @@ public class ImageSelector {
                 config.useCamera = true;
             }
             if (config.isCrop) {
-                ClipImageActivity.openActivity(activity, requestCode, config);
+                ImageClipActivity.openActivity(activity, requestCode, config);
             } else {
                 ImageSelectorActivity.openActivity(activity, requestCode, config);
             }
@@ -200,7 +200,7 @@ public class ImageSelector {
                 config.useCamera = true;
             }
             if (config.isCrop) {
-                ClipImageActivity.openActivity(fragment, requestCode, config);
+                ImageClipActivity.openActivity(fragment, requestCode, config);
             } else {
                 ImageSelectorActivity.openActivity(fragment, requestCode, config);
             }
@@ -219,7 +219,7 @@ public class ImageSelector {
                 config.useCamera = true;
             }
             if (config.isCrop) {
-                ClipImageActivity.openActivity(fragment, requestCode, config);
+                ImageClipActivity.openActivity(fragment, requestCode, config);
             } else {
                 ImageSelectorActivity.openActivity(fragment, requestCode, config);
             }

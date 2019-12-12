@@ -7,7 +7,6 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
@@ -18,10 +17,8 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.os.EnvironmentCompat;
 import androidx.appcompat.app.AppCompatActivity;
@@ -472,7 +469,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
 
     private void toPreviewActivity(ArrayList<Image> images, int position) {
         if (images != null && !images.isEmpty()) {
-            PreviewActivity.openActivity(this, images,
+            ImagePreviewActivity.openActivity(this, images,
                     mAdapter.getSelectImages(), isSingle, mMaxCount, position);
         }
     }
