@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     android:layout_margin="1dp">
 
-    <com.donkingliang.imageselector.view.SquareImageView
+    <org.beahugs.imagepicker.view.SquareImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

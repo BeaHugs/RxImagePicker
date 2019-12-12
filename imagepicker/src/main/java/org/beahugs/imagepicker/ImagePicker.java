@@ -23,6 +23,9 @@ public class ImagePicker {
     public static boolean isOriginalImage = false;
 
 
+    public static String REQUEST_CODE ="image_callBack";
+
+
 
 
 
