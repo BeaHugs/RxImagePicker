@@ -168,6 +168,11 @@ public class ImageSelector {
             return this;
         }
 
+        public ImageSelectorBuilder setFileType(int fileType){
+            config.fileType = fileType;
+            return this;
+        }
+
         /**
          * 打开相册
          *

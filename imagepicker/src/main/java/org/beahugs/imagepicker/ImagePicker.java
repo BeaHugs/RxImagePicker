@@ -26,6 +26,10 @@ public class ImagePicker {
     public static String REQUEST_CODE ="image_callBack";
 
 
+    public static final int TYPE_ALL = 0;
+    public static final int TYPE_IMAGE = 1;
+    public static final int TYPE_VIDEO = 2;
+
 
 
 

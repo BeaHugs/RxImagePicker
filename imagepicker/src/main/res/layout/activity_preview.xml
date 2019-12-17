@@ -33,13 +33,6 @@
 
         </FrameLayout>
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_toRightOf="@+id/btn_back"
-            android:background="@android:color/black" />
 
         <TextView
             android:id="@+id/tv_indicator"
@@ -101,13 +94,6 @@
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_toLeftOf="@+id/tv_select"
-            android:background="@android:color/black" />
 
     </RelativeLayout>
 

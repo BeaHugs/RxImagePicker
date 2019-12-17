@@ -116,6 +116,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     private RelativeLayout rl_top_bar;
     private ImageView down_image;
     private LinearLayout seleve_folder;
+    private int fileType;
 
     /**
      * 启动图片选择器
@@ -167,6 +168,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
         useCamera = config.useCamera;
         mSelectedImages = config.selected;
         onlyTakePhoto = config.onlyTakePhoto;
+        fileType = config.fileType;
         if (onlyTakePhoto) {
             // 仅拍照
             checkPermissionAndCamera();
@@ -646,7 +648,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
                     }
                 });
             }
-        });
+        },fileType);
     }
 
     /**

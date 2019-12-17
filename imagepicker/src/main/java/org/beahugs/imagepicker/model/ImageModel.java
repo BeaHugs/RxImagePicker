@@ -19,12 +19,17 @@ import androidx.core.content.ContextCompat;
 
 import com.donkingliang.imageselector.R;
 
+import org.beahugs.imagepicker.ImagePicker;
 import org.beahugs.imagepicker.entry.Folder;
 import org.beahugs.imagepicker.entry.Image;
 import org.beahugs.imagepicker.utils.ImageUtil;
 import org.beahugs.imagepicker.utils.StringUtils;
 import org.beahugs.imagepicker.utils.UriUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
+
+import static org.beahugs.imagepicker.model.FileLoadModel.getAllFile;
+import static org.beahugs.imagepicker.model.FileLoadModel.getDurationCondition;
+
 /**
  * @Author: wangyibo
  * @Version: 1.0
@@ -58,7 +63,7 @@ public class ImageModel {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteExternalPermission == PackageManager.PERMISSION_GRANTED) {
             //有权限，加载图片。
-            loadImageForSDCard(context, true, null);
+            loadImageForSDCard(context, true, null,0);
         }
     }
 
@@ -90,8 +95,8 @@ public class ImageModel {
      * @param context
      * @param callback
      */
-    public static void loadImageForSDCard(final Context context, final DataCallback callback) {
-        loadImageForSDCard(context, false, callback);
+    public static void loadImageForSDCard(final Context context, final DataCallback callback,int fileType) {
+        loadImageForSDCard(context, false, callback,fileType);
     }
 
     /**
@@ -101,7 +106,7 @@ public class ImageModel {
      * @param isPreload 是否是预加载
      * @param callback
      */
-    private static void loadImageForSDCard(final Context context, final boolean isPreload, final DataCallback callback) {
+    private static void loadImageForSDCard(final Context context, final boolean isPreload, final DataCallback callback, final int fileType) {
         //由于扫描图片是耗时的操作，所以要在子线程处理。
         new Thread(new Runnable() {
             @Override
@@ -111,7 +116,7 @@ public class ImageModel {
                     String imageCacheDir = ImageUtil.getImageCacheDir(context);
                     ArrayList<Folder> folders = null;
                     if (cacheImageList == null || isPreload) {
-                        ArrayList<Image> imageList = loadImage(context);
+                        ArrayList<Image> imageList = loadImage(context,fileType);
                         ArrayList<Image> images = new ArrayList<>();
 
                         for (Image image : imageList) {
@@ -147,8 +152,7 @@ public class ImageModel {
      * @param context
      * @return
      */
-    private static synchronized ArrayList<Image> loadImage(Context context) {
-
+    private static synchronized ArrayList<Image> loadImage(Context context,int fileType) {
         //扫描图片
         Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         ContentResolver mContentResolver = context.getContentResolver();
@@ -159,7 +163,8 @@ public class ImageModel {
                         MediaStore.Images.Media.DATE_ADDED,
                         MediaStore.Images.Media._ID,
                         MediaStore.Images.Media.MIME_TYPE},
-                null,
+                null
+                ,
                 null,
                 MediaStore.Images.Media.DATE_ADDED);
 
@@ -296,4 +301,6 @@ public class ImageModel {
             preload(context);
         }
     }
+
+
 }

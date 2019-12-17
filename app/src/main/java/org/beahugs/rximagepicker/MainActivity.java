@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setSingle(add_single.isChecked())  //设置是否单选
                         .canPreview(add_preview.isChecked()) //是否点击放大图片查看,，默认为true
                         .setMaxSelectCount(9)//如果设置大于0
+                        .setFileType(0)
                         .start(this, REQUEST_CODE); // 打开相册
 
                 break;
