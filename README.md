@@ -3,15 +3,13 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 
 
 ## 效果图
-
-
-![1](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144442.png)  ![2](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144501.png)  ![3](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144522.png)  ![4](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png)  
-
-
+| 文件夹 | 带相机 | 相册详情(可以缩放) | 演示 |
+| ------------ | ------------- | ------------ | ------------- |
+| ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144442.png) | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144501.png)  | ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144522.png) | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png) |
 
 
 **V1.0**
-
+- 对您提出的问题可以熬夜修改
 - 支持通过相机拍照获取图片
 - 支持从相册选择图片
 - 支持从文件选择图片  
@@ -77,3 +75,7 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
     }
     
 ```
+**4、Apk下载体验**
+
+[fir下载地址](暂无)
+
