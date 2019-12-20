@@ -10,7 +10,7 @@ import java.util.Locale;
  */
 public class FileLoadModel {
     /**
-     * 全部模式下条件
+     *  全部模式下条件
      */
     public static String getAllFile(String time_condition) {
         //(media_type=? AND mime_type!='image/gif' OR media_type=? AND 0 < duration and duration <= 9223372036854775807) AND _size>0

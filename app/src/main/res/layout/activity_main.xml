@@ -56,9 +56,16 @@
         style="@style/MatchWrapTv"
         android:text="打开相册" />
 
+    <TextView
+        android:id="@+id/open_dialog"
+        style="@style/MatchWrapTv"
+        android:text="提示框" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
+
+
+
 </LinearLayout>

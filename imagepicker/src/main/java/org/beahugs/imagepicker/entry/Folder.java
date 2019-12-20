@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Folder {
 
-    private boolean useCamera; // 是否可以调用相机拍照。只有“全部”文件夹才可以拍照
+    private boolean useCamera;  // 是否可以调用相机拍照。只有“全部”文件夹才可以拍照
     private String name;
     private ArrayList<Image> images;
 

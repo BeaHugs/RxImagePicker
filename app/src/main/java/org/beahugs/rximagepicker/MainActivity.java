@@ -19,6 +19,7 @@ import org.beahugs.imagepicker.permission.OnPerCallBack;
 import org.beahugs.imagepicker.permission.RxPermission;
 import org.beahugs.imagepicker.utils.ImageSelector;
 import org.beahugs.rximagepicker.R;
+import org.beahugs.rximagepicker.activity.DiaLogActivity;
 import org.beahugs.rximagepicker.adapter.ImageAdapter;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rvImage.setAdapter(mAdapter);
 
         findViewById(R.id.tv_moment_list_add).setOnClickListener(this);
+        findViewById(R.id.open_dialog).setOnClickListener(this);
 
         add_single = findViewById(R.id.add_single);
         add_camera = findViewById(R.id.add_camera);
@@ -87,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.tv_moment_list_add:
                 //单选
-
                 ImageSelector.builder()
                         .useCamera(add_camera.isChecked()) // 使用拍照
                         .setCrop(add_crop.isChecked())  // 使用图片剪切
@@ -98,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setFileType(0)
                         .start(this, REQUEST_CODE); // 打开相册
 
+                break;
+            case R.id.open_dialog:
+                startActivity(new Intent(this, DiaLogActivity.class));
                 break;
 
         }

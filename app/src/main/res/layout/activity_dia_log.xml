@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.DiaLogActivity">
+
+    <TextView
+        android:id="@+id/open_dialog_loading"
+        style="@style/MatchWrapTv"
+        android:text="加载" />
+
+    <TextView
+        android:id="@+id/open_dialog_alter"
+        style="@style/MatchWrapTv"
+        android:text="Alter提示框" />
+
+    <TextView
+        android:id="@+id/open_dialog_bottom"
+        style="@style/MatchWrapTv"
+        android:text="底部提示框" />
+
+    <TextView
+        android:id="@+id/open_dialog_avder"
+        style="@style/MatchWrapTv"
+        android:text="广告提示框" />
+
+
+</LinearLayout>
