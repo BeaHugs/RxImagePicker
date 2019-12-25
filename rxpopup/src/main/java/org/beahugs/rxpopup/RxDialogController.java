@@ -23,7 +23,7 @@ import java.lang.ref.WeakReference;
  * @Version: 1.0
  */
 
-public class RxDialogController {
+public class RxDialogController  {
 
     private int layoutRes;
     private int dialogWidth;
