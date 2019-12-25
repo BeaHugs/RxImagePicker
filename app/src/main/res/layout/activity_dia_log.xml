@@ -7,6 +7,25 @@
     android:orientation="vertical"
     tools:context=".activity.DiaLogActivity">
 
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/style_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="样式①"></RadioButton>
+
+        <RadioButton
+            android:id="@+id/style_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="样式②"></RadioButton>
+    </RadioGroup>
+
+
     <TextView
         android:id="@+id/open_dialog_loading"
         style="@style/MatchWrapTv"

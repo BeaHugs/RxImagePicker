@@ -1,13 +1,13 @@
 package org.beahugs.rximagepicker;
 
 import android.Manifest;
+
+
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +18,6 @@ import android.widget.CheckBox;
 import org.beahugs.imagepicker.permission.OnPerCallBack;
 import org.beahugs.imagepicker.permission.RxPermission;
 import org.beahugs.imagepicker.utils.ImageSelector;
-import org.beahugs.rximagepicker.R;
 import org.beahugs.rximagepicker.activity.DiaLogActivity;
 import org.beahugs.rximagepicker.adapter.ImageAdapter;
 
@@ -41,11 +40,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         rvImage = findViewById(R.id.rv_image);
         rvImage.setLayoutManager(new GridLayoutManager(this, 3));
         mAdapter = new ImageAdapter(this);
         rvImage.setAdapter(mAdapter);
-
         findViewById(R.id.tv_moment_list_add).setOnClickListener(this);
         findViewById(R.id.open_dialog).setOnClickListener(this);
 
