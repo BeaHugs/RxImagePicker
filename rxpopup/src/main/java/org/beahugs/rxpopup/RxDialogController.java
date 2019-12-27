@@ -19,7 +19,7 @@ import org.beahugs.rxpopup.utils.type.DiaLogSettings;
 import java.lang.ref.WeakReference;
 
 /**
- * @Author: wangyibo
+ * @Author:  wangyibo
  * @Version: 1.0
  */
 
