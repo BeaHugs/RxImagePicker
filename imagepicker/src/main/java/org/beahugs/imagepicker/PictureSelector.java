@@ -14,7 +14,7 @@ import java.util.List;
 import static org.beahugs.imagepicker.ImagePicker.REQUEST_CODE;
 
 /**
- * @Author: wangyibo
+ * @Author:  wangyibo
  * @Version: 1.0
  */
 public class PictureSelector {
