@@ -22,7 +22,7 @@ import java.util.Random;
  * @Author: wangyibo
  * @Version: 1.0
  */
-public final class PermissionFragment extends Fragment implements Runnable {
+public final class  PermissionFragment extends Fragment implements Runnable {
 
     private static final String PERMISSION_GROUP = "permission_group"; // 请求的权限
     private static final String REQUEST_CODE = "request_code"; // 请求码（自动生成）

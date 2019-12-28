@@ -37,7 +37,7 @@ import static android.animation.ObjectAnimator.ofFloat;
 
 /**
  * @Author:  wangyibo
- * @Version: 1.0
+ * @Version:   1.0
  */
 public class ImagePreviewActivity extends AppCompatActivity {
 

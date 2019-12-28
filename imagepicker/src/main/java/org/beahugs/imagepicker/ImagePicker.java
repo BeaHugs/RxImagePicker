@@ -3,7 +3,7 @@ package org.beahugs.imagepicker;
 
 
 /**
- * @Author: wangyibo
+ * @Author:  wangyibo
  * @Version: 1.0
  */
 public class ImagePicker {

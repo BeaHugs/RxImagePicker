@@ -65,8 +65,8 @@ import java.util.Locale;
 import static org.beahugs.imagepicker.view.ImageFolderPopupWindow.ANIM_DURATION;
 
 /**
- * @Author:  wangyibo
- * @Version: 1.0
+ * @Author:   wangyibo
+ * @Version:    1.0
  */
 public class ImageSelectorActivity extends AppCompatActivity implements FolderAdapter.OnFolderSelectListener, View.OnClickListener, ImageFolderPopupWindow.PoPupWindowOutsideImpl {
 

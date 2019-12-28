@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @Author: wangyibo
+ * @Author:  wangyibo
  * @Version: 1.0
  */
 public class PermissionUtils {
