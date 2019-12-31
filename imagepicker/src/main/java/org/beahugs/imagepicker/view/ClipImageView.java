@@ -17,7 +17,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 /**

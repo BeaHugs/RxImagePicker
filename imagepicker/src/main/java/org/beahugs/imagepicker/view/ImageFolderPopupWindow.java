@@ -18,7 +18,6 @@ import org.beahugs.imagepicker.entry.Folder;
 import org.beahugs.imagepicker.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author: wangyibo
