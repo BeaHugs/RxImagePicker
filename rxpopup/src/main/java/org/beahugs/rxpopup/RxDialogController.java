@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentManager;
 import org.beahugs.rxpopup.dialog.IDialog;
 import org.beahugs.rxpopup.manager.ScreenUtil;
 import org.beahugs.rxpopup.utils.type.DiaLogSettings;
-
 import java.lang.ref.WeakReference;
 
 /**
