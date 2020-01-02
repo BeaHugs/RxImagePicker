@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class PermissionUtils {
     /**
-     * 是否是6.0以上版本
+      *  是否是6.0以上版本
      */
     static boolean isOverMarshmallow() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
@@ -63,16 +63,15 @@ public class PermissionUtils {
         }
         return true;
     }
-
+//
     /**
-     * 获取没有授予的权限
-     *
+      *  获取没有授予的权限  ...
      * @param context               上下文对象
      * @param permissions           需要请求的权限组
      */
     static ArrayList<String> getFailPermissions(Context context, List<String> permissions) {
 
-        // 如果是安卓6.0以下版本就返回null
+         //如果是安卓6.0以下版本就返回null
         if (!PermissionUtils.isOverMarshmallow()) {
             return null;
         }

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 
 /**
- * @Author: wangyibo
- * @Version: 1.0
+ *  @Author: wangyibo
+ *  @Version: 1.0
  */
 
 public interface IDialog {
