@@ -51,11 +51,23 @@ public abstract class RxBaseDialog extends DialogFragment {
         Dialog dialog = getDialog();
         if (dialog != null) {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            //如果isCancelable()是false 则会屏蔽物理返回键
+
+            /**
+             * 如果isCancelable()是false 则会屏蔽物理返回键
+             */
+
             dialog.setCancelable(isCancelable());
-            //如果isCancelableOutside()为false 点击屏幕外Dialog不会消失；反之会消失
+
+            /**
+             * 如果isCancelableOutside()为false 点击屏幕外Dialog不会消失；反之会消失
+             */
+
             dialog.setCanceledOnTouchOutside(isCancelableOutside());
-            //如果isCancelable()设置的是false 会屏蔽物理返回键
+            
+            /**
+             * 如果isCancelable()设置的是false 会屏蔽物理返回键
+             */
+
             dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
