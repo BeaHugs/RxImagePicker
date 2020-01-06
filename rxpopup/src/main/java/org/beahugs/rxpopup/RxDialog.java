@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import org.beahugs.rxpopup.dialog.IDialog;
 import org.beahugs.rxpopup.dialog.RxBaseDialog;
 import org.beahugs.rxpopup.utils.type.DiaLogSettings;

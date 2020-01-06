@@ -1,6 +1,5 @@
 package org.beahugs.rxpopup.manager;
 
-
 import org.beahugs.rxpopup.RxDialog;
 
 /**

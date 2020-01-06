@@ -63,7 +63,7 @@ public abstract class RxBaseDialog extends DialogFragment {
              */
 
             dialog.setCanceledOnTouchOutside(isCancelableOutside());
-            
+
             /**
              * 如果isCancelable()设置的是false 会屏蔽物理返回键
              */
