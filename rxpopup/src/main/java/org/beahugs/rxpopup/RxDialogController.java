@@ -7,7 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.TextView
+import android.widget.TextView;
 import androidx.fragment.app.FragmentManager;
 
 import org.beahugs.rxpopup.dialog.IDialog;

@@ -1,1 +1,3 @@
-include ':app', ':imagepicker', ':rxpopup'
+include ':app',
+        ':imagepicker',
+        ':rxpopup'
