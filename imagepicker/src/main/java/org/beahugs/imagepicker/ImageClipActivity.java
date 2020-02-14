@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Locale;
 /**
  * @Author: wangyibo
- * @Version: 1.0 
+ * @Version: 1.0
  */
 public class ImageClipActivity extends Activity {
 
