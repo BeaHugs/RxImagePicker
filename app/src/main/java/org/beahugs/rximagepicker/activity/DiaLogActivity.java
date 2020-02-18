@@ -45,7 +45,7 @@ public class DiaLogActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.open_dialog_loading:
+             case R.id.open_dialog_loading:
                 new RxDialog.Builder(this)
                         .setTitle("title")
                         .setContent("您好啊")

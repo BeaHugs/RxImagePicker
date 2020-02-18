@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         add_camera = findViewById(R.id.add_camera);
         add_crop = findViewById(R.id.add_crop);
         add_preview = findViewById(R.id.add_preview);
-        
+
         RxPermission.with(this).permission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .request(new OnPerCallBack() {
                     @Override
