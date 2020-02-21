@@ -25,8 +25,8 @@ import org.beahugs.rxpopup.manager.RxDialogsManager;
 
 
 /**
- * @Author: wangyibo
- * @Version: 1.0
+ *  @Author: wangyibo
+ *  @Version: 1.0
  */
 
 public abstract class RxBaseDialog extends DialogFragment {
