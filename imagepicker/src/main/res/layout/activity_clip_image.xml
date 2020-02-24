@@ -74,9 +74,17 @@
 
     </RelativeLayout>
 
+
+    <me.pqpo.smartcropperlib.view.CropImageView
+        android:id="@+id/iv_crop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <org.beahugs.imagepicker.view.ClipImageView
         android:id="@+id/process_img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

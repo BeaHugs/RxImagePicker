@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 
 import org.beahugs.imagepicker.permission.OnPerCallBack;
 import org.beahugs.imagepicker.permission.RxPermission;
 import org.beahugs.imagepicker.utils.ImageSelector;
-import org.beahugs.rximagepicker.activity.DiaLogActivity;
 import org.beahugs.rximagepicker.adapter.ImageAdapter;
 
 import java.util.ArrayList;
@@ -97,7 +97,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.open_dialog:
-                startActivity(new Intent(this, DiaLogActivity.class));
+               // startActivity(new Intent(this, DiaLogActivity.class));
+                Toast.makeText(this,"注释了...",Toast.LENGTH_SHORT).show();
                 break;
 
         }

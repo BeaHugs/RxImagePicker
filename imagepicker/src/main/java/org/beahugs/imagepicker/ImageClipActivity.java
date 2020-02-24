@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,9 @@ import org.beahugs.imagepicker.view.ClipImageView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+
+import me.pqpo.smartcropperlib.view.CropImageView;
+
 /**
  * @Author: wangyibo
  * @Version: 1.0
@@ -38,6 +42,7 @@ public class ImageClipActivity extends Activity {
     private int mRequestCode;
     private boolean isCameraImage;
     private float cropRatio;
+    private CropImageView iv_crop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,12 @@ public class ImageClipActivity extends Activity {
         btnConfirm = findViewById(R.id.btn_confirm);
         btnBack = findViewById(R.id.btn_back);
 
+        iv_crop = findViewById(R.id.iv_crop);
+
+        //Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getPath());
+        //iv_crop.setImageBitmap(bitmap);
+
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +111,8 @@ public class ImageClipActivity extends Activity {
             isCameraImage = data.getBooleanExtra(ImageSelector.IS_CAMERA_IMAGE, false);
             Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(this, images.get(0), 720, 1080);
             if (bitmap != null) {
-                imageView.setBitmapData(bitmap);
+                //imageView.setBitmapData(bitmap);
+                iv_crop.setImageBitmap(bitmap);
             } else {
                 finish();
             }
@@ -118,7 +130,7 @@ public class ImageClipActivity extends Activity {
             bitmap.recycle();
             bitmap = null;
         }
-
+     
         if (StringUtils.isNotEmptyString(imagePath)) {
             ArrayList<String> selectImages = new ArrayList<>();
             selectImages.add(imagePath);
