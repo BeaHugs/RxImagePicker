@@ -130,7 +130,7 @@ public class ImageClipActivity extends Activity {
             bitmap.recycle();
             bitmap = null;
         }
-     
+
         if (StringUtils.isNotEmptyString(imagePath)) {
             ArrayList<String> selectImages = new ArrayList<>();
             selectImages.add(imagePath);
