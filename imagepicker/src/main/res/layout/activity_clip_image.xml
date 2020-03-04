@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#272828"
     android:orientation="vertical">
 
@@ -75,16 +76,15 @@
     </RelativeLayout>
 
 
-    <me.pqpo.smartcropperlib.view.CropImageView
-        android:id="@+id/iv_crop"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
     <org.beahugs.imagepicker.view.ClipImageView
         android:id="@+id/process_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>

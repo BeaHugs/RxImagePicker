@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.text.format.DateFormat;
@@ -24,11 +25,14 @@ import org.beahugs.imagepicker.utils.StringUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
 import org.beahugs.imagepicker.view.ClipImageView;
 
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import me.pqpo.smartcropperlib.view.CropImageView;
+
+
 
 /**
  * @Author: wangyibo
@@ -42,7 +46,7 @@ public class ImageClipActivity extends Activity {
     private int mRequestCode;
     private boolean isCameraImage;
     private float cropRatio;
-    private CropImageView iv_crop;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +81,7 @@ public class ImageClipActivity extends Activity {
         btnConfirm = findViewById(R.id.btn_confirm);
         btnBack = findViewById(R.id.btn_back);
 
-        iv_crop = findViewById(R.id.iv_crop);
+        //imageView = findViewById(R.id.iv_crop);
 
         //Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getPath());
         //iv_crop.setImageBitmap(bitmap);
@@ -108,11 +112,12 @@ public class ImageClipActivity extends Activity {
 
         if (data != null && requestCode == mRequestCode) {
             ArrayList<String> images = data.getStringArrayListExtra(ImageSelector.SELECT_RESULT);
+
             isCameraImage = data.getBooleanExtra(ImageSelector.IS_CAMERA_IMAGE, false);
             Bitmap bitmap = ImageUtil.decodeSampledBitmapFromFile(this, images.get(0), 720, 1080);
             if (bitmap != null) {
-                //imageView.setBitmapData(bitmap);
-                iv_crop.setImageBitmap(bitmap);
+                imageView.setBitmapData(bitmap);
+                //iv_crop.setImageBitmap(bitmap);
             } else {
                 finish();
             }
@@ -153,6 +158,7 @@ public class ImageClipActivity extends Activity {
         Intent intent = new Intent(activity, ImageClipActivity.class);
         intent.putExtra(ImageSelector.KEY_CONFIG, config);
         activity.startActivityForResult(intent, requestCode);
+
     }
 
     /**

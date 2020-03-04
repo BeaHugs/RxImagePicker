@@ -54,6 +54,7 @@ import org.beahugs.imagepicker.utils.UriUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
 import org.beahugs.imagepicker.view.ImageFolderPopupWindow;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -65,8 +66,8 @@ import java.util.Locale;
 import static org.beahugs.imagepicker.view.ImageFolderPopupWindow.ANIM_DURATION;
 
 /**
- * @Author:   wangyibo
- * @Version:  1.0
+ * @Author: wangyibo
+ * @Version: 1.0
  */
 public class ImageSelectorActivity extends AppCompatActivity implements FolderAdapter.OnFolderSelectListener, View.OnClickListener, ImageFolderPopupWindow.PoPupWindowOutsideImpl {
 
@@ -117,6 +118,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     private ImageView down_image;
     private LinearLayout seleve_folder;
     private int fileType;
+    private RequestConfig config;
 
     /**
      * 启动图片选择器
@@ -161,7 +163,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        RequestConfig config = intent.getParcelableExtra(ImageSelector.KEY_CONFIG);
+        config = intent.getParcelableExtra(ImageSelector.KEY_CONFIG);
         mMaxCount = config.maxSelectCount;
         isSingle = config.isSingle;
         canPreview = config.canPreview;
@@ -218,7 +220,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
         tvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 confirm();
+                confirm();
             }
         });
 
@@ -463,6 +465,8 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     }
 
     private void setResult(ArrayList<String> images, boolean isCameraImage) {
+
+
         Intent intent = new Intent();
         intent.putStringArrayListExtra(ImageSelector.SELECT_RESULT, images);
         intent.putExtra(ImageSelector.IS_CAMERA_IMAGE, isCameraImage);
@@ -519,7 +523,8 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
                     images.add(mCameraImagePath);
                 }
                 saveImageAndFinish(images, true);
-            } else {
+            }
+            else {
                 if (onlyTakePhoto) {
                     finish();
                 }
@@ -648,7 +653,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
                     }
                 });
             }
-        },fileType);
+        }, fileType);
     }
 
     /**
