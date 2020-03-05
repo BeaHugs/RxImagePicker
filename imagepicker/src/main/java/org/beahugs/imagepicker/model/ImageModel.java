@@ -8,11 +8,13 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.core.content.ContextCompat;
@@ -63,7 +65,7 @@ public class ImageModel {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteExternalPermission == PackageManager.PERMISSION_GRANTED) {
             //有权限，加载图片。
-            loadImageForSDCard(context, true, null,0);
+            loadImageForSDCard(context, true, null, 0);
         }
     }
 
@@ -95,8 +97,8 @@ public class ImageModel {
      * @param context
      * @param callback
      */
-    public static void loadImageForSDCard(final Context context, final DataCallback callback,int fileType) {
-        loadImageForSDCard(context, false, callback,fileType);
+    public static void loadImageForSDCard(final Context context, final DataCallback callback, int fileType) {
+        loadImageForSDCard(context, false, callback, fileType);
     }
 
     /**
@@ -116,21 +118,28 @@ public class ImageModel {
                     String imageCacheDir = ImageUtil.getImageCacheDir(context);
                     ArrayList<Folder> folders = null;
                     if (cacheImageList == null || isPreload) {
-                        ArrayList<Image> imageList = loadImage(context,fileType);
-                        ArrayList<Image> images = new ArrayList<>();
+                        ArrayList<Image> imageList = loadImage(context);
+                        ArrayList<Image> videoList = loadVideo(context);
 
-                        for (Image image : imageList) {
-                            //过滤未下载完成或者不存在的文件
-                            boolean isEffective = isAndroidQ ? true  // 由于在Android Q用uri判断图片是否有效的方法耗时，所以去掉判断。
-                                    : ImageUtil.isEffective(image.getPath());
-                            //过滤剪切保存的图片；
-                            boolean isCutImage = ImageUtil.isCutImage(imageCacheDir, image.getPath());
-                            if (isEffective && !isCutImage) {
-                                images.add(image);
-                            }
-                        }
-                        Collections.reverse(images);
-                        folders = splitFolder(context, images);
+                        Log.i("videosize",videoList.size()+"");
+                        imageList.addAll(videoList);
+
+                        //2020年3月5日   为了显示视频   需要优化
+                       // ArrayList<Image> images = new ArrayList<>();
+
+//                        for (Image image : imageList) {
+//                            //过滤未下载完成或者不存在的文件
+//                            boolean isEffective = isAndroidQ ? true  // 由于在Android Q用uri判断图片是否有效的方法耗时，所以去掉判断。
+//                                    : ImageUtil.isEffective(image.getPath());
+//                            //过滤剪切保存的图片；
+//                            boolean isCutImage = ImageUtil.isCutImage(imageCacheDir, image.getPath());
+//                            if (isEffective && !isCutImage) {
+//                                images.add(image);
+//                            }
+//                        }
+                   //     Log.i("imagesimagesimages",images.size());
+                        Collections.reverse(imageList);
+                        folders = splitFolder(context, imageList);
                         if (isNeedCache) {
                             cacheImageList = folders;
                         }
@@ -138,6 +147,7 @@ public class ImageModel {
                         folders = cacheImageList;
                     }
 
+                    Log.i("filesize",folders.size()+"");
                     if (callback != null) {
                         callback.onSuccess(folders);
                     }
@@ -152,7 +162,7 @@ public class ImageModel {
      * @param context
      * @return
      */
-    private static synchronized ArrayList<Image> loadImage(Context context,int fileType) {
+    private static synchronized ArrayList<Image> loadImage(Context context) {
         //扫描图片
         Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         ContentResolver mContentResolver = context.getContentResolver();
@@ -198,6 +208,53 @@ public class ImageModel {
         }
         return images;
     }
+
+
+    public static synchronized ArrayList<Image> loadVideo(Context context) {
+        String[] projection = {MediaStore.Video.Media.DATA,
+                MediaStore.Video.Media.DISPLAY_NAME,
+                MediaStore.Video.Media.DATE_ADDED,
+                MediaStore.Video.Media._ID,
+                MediaStore.Video.Media.MIME_TYPE};
+        Uri mvideoUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        ContentResolver mContentResolver = context.getContentResolver();
+
+        Cursor mCursor = mContentResolver.query(mvideoUri, projection,
+                null,
+                null,
+                MediaStore.Images.Media.DATE_ADDED);
+
+        ArrayList<Image> images = new ArrayList<>();
+
+        //读取扫描到的图片
+        if (mCursor != null) {
+            while (mCursor.moveToNext()) {
+                // 获取图片的路径
+                long id = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Video.Media._ID));
+                String path = mCursor.getString(
+                        mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
+                //获取图片名称
+                String name = mCursor.getString(
+                        mCursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
+                //获取图片时间
+                long time = mCursor.getLong(
+                        mCursor.getColumnIndex(MediaStore.Video.Media.DATE_ADDED));
+
+                //获取图片类型
+                String mimeType = mCursor.getString(
+                        mCursor.getColumnIndex(MediaStore.Video.Media.MIME_TYPE));
+
+                //获取图片uri
+                Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI.buildUpon()
+                        .appendPath(String.valueOf(id)).build();
+
+                images.add(new Image(path, time, name, mimeType, uri));
+            }
+            mCursor.close();
+        }
+        return images;
+    }
+
 
     /**
      * 检查图片是否存在。ContentResolver查询处理的数据有可能文件路径并不存在。

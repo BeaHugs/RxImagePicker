@@ -16,6 +16,9 @@ public class Image implements Parcelable {
     private String mimeType;
     private Uri uri;
 
+
+
+
     public Image(String path, long time, String name, String mimeType, Uri uri) {
         this.path = path;
         this.time = time;

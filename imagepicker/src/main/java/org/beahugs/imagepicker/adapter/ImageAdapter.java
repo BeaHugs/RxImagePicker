@@ -2,16 +2,20 @@ package org.beahugs.imagepicker.adapter;
 
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.donkingliang.imageselector.R;
 
+import org.beahugs.imagepicker.config.MimeType;
 import org.beahugs.imagepicker.entry.Image;
 import org.beahugs.imagepicker.utils.VersionUtils;
 
@@ -69,33 +73,60 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_IMAGE) {
             final Image image = getImage(position);
+
+
+
             Glide.with(mContext).load(isAndroidQ ? image.getUri() : image.getPath())
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(holder.ivImage);
+
+
+            String mimeType = image.getMimeType();
+
+            Log.i("mimeType",mimeType);
+
+            final boolean isImage = MimeType.eqImage(mimeType);
 
             setItemSelect(holder, mSelectImages.contains(image));
 
             holder.ivGif.setVisibility(image.isGif() ? View.VISIBLE : View.GONE);
 
+
             //点击选中/取消选中图片
             holder.ivSelectIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    checkedImage(holder, image);
+
+                    if (isImage){
+                        checkedImage(holder, image);
+                    }else{
+                        Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
+                    }
+
                 }
             });
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (isViewImage) {
-                        if (mItemClickListener != null) {
-                            int p = holder.getAdapterPosition();
-                            mItemClickListener.OnItemClick(image, useCamera ? p - 1 : p);
+
+
+
+                    if (isImage){
+                        if (isViewImage) {
+                            if (mItemClickListener != null) {
+                                int p = holder.getAdapterPosition();
+                                mItemClickListener.OnItemClick(image, useCamera ? p - 1 : p);
+                            }
+                        } else {
+                            checkedImage(holder, image);
                         }
-                    } else {
-                        checkedImage(holder, image);
+                    }else{
+                        Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
                     }
+
+
+
                 }
             });
         } else if (getItemViewType(position) == TYPE_CAMERA) {
