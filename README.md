@@ -87,7 +87,7 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 
 | Android开发交流群 |  
 | ------------ | 
-| ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200307144007.jpg width="375") | 
+| ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200307144007.jpg) | 
 
 
      
