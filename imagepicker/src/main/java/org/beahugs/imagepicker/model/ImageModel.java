@@ -65,7 +65,7 @@ public class ImageModel {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteExternalPermission == PackageManager.PERMISSION_GRANTED) {
             //有权限，加载图片。
-            loadImageForSDCard(context, true, null, 0);
+            loadImageForSDCard(context, true, null,false);
         }
     }
 
@@ -97,8 +97,8 @@ public class ImageModel {
      * @param context
      * @param callback
      */
-    public static void loadImageForSDCard(final Context context, final DataCallback callback, int fileType) {
-        loadImageForSDCard(context, false, callback, fileType);
+    public static void loadImageForSDCard(final Context context, final DataCallback callback,boolean isShowVideo) {
+        loadImageForSDCard(context, false, callback,isShowVideo);
     }
 
     /**
@@ -108,7 +108,7 @@ public class ImageModel {
      * @param isPreload 是否是预加载
      * @param callback
      */
-    private static void loadImageForSDCard(final Context context, final boolean isPreload, final DataCallback callback, final int fileType) {
+    private static void loadImageForSDCard(final Context context, final boolean isPreload, final DataCallback callback, final boolean isShowVideo) {
         //由于扫描图片是耗时的操作，所以要在子线程处理。
         new Thread(new Runnable() {
             @Override
@@ -119,10 +119,12 @@ public class ImageModel {
                     ArrayList<Folder> folders = null;
                     if (cacheImageList == null || isPreload) {
                         ArrayList<Image> imageList = loadImage(context);
-                        ArrayList<Image> videoList = loadVideo(context);
 
-                        Log.i("videosize",videoList.size()+"");
-                        imageList.addAll(videoList);
+                        if (!isShowVideo){
+                            ArrayList<Image> videoList = loadVideo(context);
+                            Log.i("videosize",videoList.size()+"");
+                            imageList.addAll(videoList);
+                        }
 
                         //2020年3月5日   为了显示视频   需要优化
                        // ArrayList<Image> images = new ArrayList<>();

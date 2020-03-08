@@ -653,7 +653,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
                     }
                 });
             }
-        }, fileType);
+        }, config.isCrop);
     }
 
     /**

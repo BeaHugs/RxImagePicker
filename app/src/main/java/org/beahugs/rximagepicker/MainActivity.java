@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setMaxSelectCount(9)//如果设置大于0
                         .setFileType(0)
                         .start(this, REQUEST_CODE); // 打开相册
-
                 break;
             case R.id.open_dialog:
                // startActivity(new Intent(this, DiaLogActivity.class));

@@ -89,7 +89,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
             final boolean isImage = MimeType.eqImage(mimeType);
 
-            //2020年3月8日
+            //2020年3月8日  视频格式
             if (!isImage){
                 holder.tv_duration.setVisibility(View.VISIBLE);
                 String video_time = DateUtils.formatDurationTime(MediaUtils.extractDuration(mContext, VersionUtils.isAndroidQ(), image.getPath()));
@@ -106,12 +106,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             holder.ivSelectIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (isImage){
+                    //if (isImage){
                         checkedImage(holder, image);
-                    }else{
+                    //}else{
                        // Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
-                        VideoPlayActivity.start(mContext,image.getPath());
-                    }
+                       // VideoPlayActivity.start(mContext,image.getPath());
+                    //}
 
                 }
             });
