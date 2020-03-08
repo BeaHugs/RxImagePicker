@@ -26,10 +26,10 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        <activity android:name="org.beahugs.imagepicker.view.crop.CropImageActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        <activity android:name="org.beahugs.imagepicker.VideoPlayActivity"
             />
+
+
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -15,8 +16,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.donkingliang.imageselector.R;
 
+import org.beahugs.imagepicker.VideoPlayActivity;
 import org.beahugs.imagepicker.config.MimeType;
 import org.beahugs.imagepicker.entry.Image;
+import org.beahugs.imagepicker.utils.DateUtils;
+import org.beahugs.imagepicker.utils.MediaUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
 
 import java.util.ArrayList;
@@ -80,12 +84,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(holder.ivImage);
 
-
             String mimeType = image.getMimeType();
 
-            Log.i("mimeType",mimeType);
 
             final boolean isImage = MimeType.eqImage(mimeType);
+
+            //2020年3月8日
+            if (!isImage){
+                holder.tv_duration.setVisibility(View.VISIBLE);
+                String video_time = DateUtils.formatDurationTime(MediaUtils.extractDuration(mContext, VersionUtils.isAndroidQ(), image.getPath()));
+                holder.tv_duration.setText(video_time);
+            }
+
 
             setItemSelect(holder, mSelectImages.contains(image));
 
@@ -96,11 +106,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             holder.ivSelectIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     if (isImage){
                         checkedImage(holder, image);
                     }else{
-                        Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
+                       // Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
+                        VideoPlayActivity.start(mContext,image.getPath());
                     }
 
                 }
@@ -109,9 +119,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
-
                     if (isImage){
                         if (isViewImage) {
                             if (mItemClickListener != null) {
@@ -122,11 +129,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                             checkedImage(holder, image);
                         }
                     }else{
-                        Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
+                        //image.getPath();
+                        VideoPlayActivity.start(mContext,image.getPath());
+
                     }
-
-
-
                 }
             });
         } else if (getItemViewType(position) == TYPE_CAMERA) {
@@ -299,6 +306,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         ImageView ivMasking;
         ImageView ivGif;
         ImageView ivCamera;
+        TextView tv_duration;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -308,6 +316,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             ivGif = itemView.findViewById(R.id.iv_gif);
 
             ivCamera = itemView.findViewById(R.id.iv_camera);
+            tv_duration = itemView.findViewById(R.id.tv_duration);
         }
     }
 

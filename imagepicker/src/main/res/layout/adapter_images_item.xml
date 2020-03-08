@@ -38,5 +38,28 @@
         android:layout_gravity="right|bottom"
         android:padding="3dp"
         android:src="@drawable/ic_gif"
-        android:visibility="gone" />
+        android:visibility="gone"
+        />
+
+
+
+    <TextView
+        android:id="@+id/tv_duration"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/icon_shadow_bg"
+        android:drawableLeft="@drawable/icon_video"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:paddingTop="8dp"
+        android:text="00:00"
+        android:layout_gravity="right|bottom"
+        android:textColor="@color/rximage_color_white"
+        android:textSize="11sp"
+        android:visibility="gone"
+        />
+
+
+
 </FrameLayout>
