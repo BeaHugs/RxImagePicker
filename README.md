@@ -1,5 +1,5 @@
 # RxImagePicker
-Android图片选择器、支持AndroidX，支持图片的单选、多选、图片预览、图片文件夹切换、相机拍照、图片裁剪
+Android图片选择器、支持AndroidX，支持图片的单选、多选、图片预览、视频预览、图片文件夹切换、相机拍照、图片裁剪
 ### 项目介绍:
 [网络请求框架--我的另一个开源项目: https://github.com/BeaHugs/rxhttp](https://github.com/BeaHugs/rxhttp)
 
