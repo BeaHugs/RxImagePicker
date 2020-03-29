@@ -233,8 +233,21 @@ public class ImageModel {
             while (mCursor.moveToNext()) {
                 // 获取图片的路径
                 long id = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Video.Media._ID));
-                String path = mCursor.getString(
-                        mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
+                String path ;//= mCursor.getString(
+//                        mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
+
+                //2020年3月29日 在android10机型上面加载视频失败
+                //https://blog.csdn.net/lf0814/article/details/99683112
+                if(VersionUtils.isAndroidQ()){
+                    path =MediaStore.Video.Media
+                            .EXTERNAL_CONTENT_URI
+                            .buildUpon()
+                            .appendPath(String.valueOf(id)).build().toString();
+                }else{
+                    path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
+                }
+
+
                 //获取图片名称
                 String name = mCursor.getString(
                         mCursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));

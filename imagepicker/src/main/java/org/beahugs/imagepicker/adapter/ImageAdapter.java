@@ -3,6 +3,7 @@ package org.beahugs.imagepicker.adapter;
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +80,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             final Image image = getImage(position);
 
 
-
             Glide.with(mContext).load(isAndroidQ ? image.getUri() : image.getPath())
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(holder.ivImage);
@@ -89,9 +89,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
             final boolean isImage = MimeType.eqImage(mimeType);
 
+            Log.i("image.getPath",isImage+"");
             //2020年3月8日  视频格式
             if (!isImage){
                 holder.tv_duration.setVisibility(View.VISIBLE);
+                //String path = image.getUri().getPath();
+                Log.i("image.getPath",image.getPath());
                 String video_time = DateUtils.formatDurationTime(MediaUtils.extractDuration(mContext, VersionUtils.isAndroidQ(), image.getPath()));
                 holder.tv_duration.setText(video_time);
             }

@@ -10,6 +10,11 @@ android {
         versionName "1.0"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     signingConfigs {
         release {
             storePassword "123123"
@@ -38,5 +43,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation project(':imagepicker')
     //implementation project(':rxpopup')
+
+    //implementation 'com.lakehubo:hbanner:1.0.2'
 
 }

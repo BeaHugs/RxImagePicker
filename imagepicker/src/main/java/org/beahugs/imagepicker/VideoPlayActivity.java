@@ -3,6 +3,7 @@ package org.beahugs.imagepicker;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.VideoView;
 
 import androidx.annotation.Nullable;
@@ -27,7 +28,8 @@ public class VideoPlayActivity extends AppCompatActivity {
         video_view = findViewById(R.id.video_view);
         Intent intent = getIntent();
         String videoUrl = intent.getStringExtra("videoUrl");
-        video_view.setVideoPath(videoUrl);
+        Log.i("videoUrl",videoUrl);
+         video_view.setVideoPath(videoUrl);
         video_view.start();
 
 
