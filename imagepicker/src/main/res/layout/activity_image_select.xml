@@ -7,7 +7,7 @@
         android:id="@+id/rl_top_bar"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#373c3d"
+        android:background="@color/rximage_color_grey"
         android:orientation="vertical">
 
 
@@ -18,8 +18,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:scaleType="centerInside"
-                android:foreground="@drawable/btn_back_selector"
-                android:src="@drawable/icon_back" />
+                android:src="@drawable/picture_icon_back" />
 
 
         <LinearLayout
@@ -65,7 +64,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/rl_bottom_bar"
         android:layout_below="@+id/rl_top_bar"
-        android:background="#272828"
+        android:background="@color/rximage_color_white"
         android:fadingEdge="none"
         android:fadingEdgeLength="0dp"
         android:overScrollMode="never"
@@ -82,7 +81,9 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="gone"
+        />
 
 
 
@@ -92,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:background="#373c3d">
+        android:background="@color/rximage_color_grey">
 
         <FrameLayout
             android:id="@+id/btn_folder"

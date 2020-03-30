@@ -7,4 +7,8 @@
 
     <color name="rximage_color_white">#FFFFFF</color>
 
+    <color name="rximage_color_grey">#393a3e</color>
+
+
+
 </resources>
