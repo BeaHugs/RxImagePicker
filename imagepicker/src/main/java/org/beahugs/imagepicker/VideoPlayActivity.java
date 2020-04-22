@@ -25,6 +25,8 @@ public class VideoPlayActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
+
+
         video_view = findViewById(R.id.video_view);
         Intent intent = getIntent();
         String videoUrl = intent.getStringExtra("videoUrl");

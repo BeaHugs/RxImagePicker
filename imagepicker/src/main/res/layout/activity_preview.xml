@@ -29,7 +29,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_back" />
+                android:src="@drawable/picture_icon_back" />
 
         </FrameLayout>
 
