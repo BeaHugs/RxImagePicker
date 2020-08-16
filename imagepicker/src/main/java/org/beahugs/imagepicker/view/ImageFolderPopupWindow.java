@@ -1,11 +1,13 @@
 package org.beahugs.imagepicker.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,14 +30,14 @@ public class ImageFolderPopupWindow extends PopupWindow {
 
     public static final int ANIM_DURATION = 300;
 
-    private Context mContext;
+    private Activity mContext;
     private ArrayList<Folder> mMediaFolderList;
 
     private RecyclerView mRecyclerView;
     private FolderAdapter mImageFoldersAdapter;
     private PoPupWindowOutsideImpl poPupWindowOutsideImpl;
 
-    public ImageFolderPopupWindow(Context context, ArrayList<Folder> mediaFolderList) {
+    public ImageFolderPopupWindow(Activity context, ArrayList<Folder> mediaFolderList) {
         this.mContext = context;
         this.mMediaFolderList = mediaFolderList;
         initView();
@@ -62,10 +64,11 @@ public class ImageFolderPopupWindow extends PopupWindow {
         setContentView(view);
         int[] screenSize = Utils.getScreenSize(mContext);
         setWidth(screenSize[0]);
-        setHeight((int) (screenSize[1] * 0.6));
+        setHeight((int) (screenSize[1] * 0.5));
         setBackgroundDrawable(new ColorDrawable());
         setOutsideTouchable(true);
         setFocusable(true);
+
         setTouchInterceptor(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -79,11 +82,11 @@ public class ImageFolderPopupWindow extends PopupWindow {
     }
 
 
-    public interface PoPupWindowOutsideImpl{
+    public interface PoPupWindowOutsideImpl {
         void outsideDismiss();
     }
 
-    public void setPoPupWindowOutsideImpl(PoPupWindowOutsideImpl poPupWindowOutsideImpl){
+    public void setPoPupWindowOutsideImpl(PoPupWindowOutsideImpl poPupWindowOutsideImpl) {
 
         this.poPupWindowOutsideImpl = poPupWindowOutsideImpl;
     }
@@ -95,7 +98,12 @@ public class ImageFolderPopupWindow extends PopupWindow {
     @Override
     public void dismiss() {
         super.dismiss();
-        if (poPupWindowOutsideImpl!=null){
+
+        WindowManager.LayoutParams lp = mContext.getWindow().getAttributes();
+        lp.alpha = 1.0f;
+        mContext.getWindow().setAttributes(lp);
+
+        if (poPupWindowOutsideImpl != null) {
             poPupWindowOutsideImpl.outsideDismiss();
         }
     }

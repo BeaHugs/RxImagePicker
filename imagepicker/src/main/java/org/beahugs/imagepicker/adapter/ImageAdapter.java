@@ -46,7 +46,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private static final int TYPE_CAMERA = 1;
     private static final int TYPE_IMAGE = 2;
 
-    private boolean useCamera;
+    //private boolean useCamera;
 
     private boolean isAndroidQ = VersionUtils.isAndroidQ();
 
@@ -126,7 +126,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                         if (isViewImage) {
                             if (mItemClickListener != null) {
                                 int p = holder.getAdapterPosition();
-                                mItemClickListener.OnItemClick(image, useCamera ? p - 1 : p);
+                                //mItemClickListener.OnItemClick(image, useCamera ? p - 1 : p);
                             }
                         } else {
                             checkedImage(holder, image);
@@ -153,11 +153,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if (useCamera && position == 0) {
-            return TYPE_CAMERA;
-        } else {
+//        if (useCamera && position == 0) {
+//            return TYPE_CAMERA;
+//        } else {
             return TYPE_IMAGE;
-        }
+       // }
     }
 
     private void checkedImage(ViewHolder holder, Image image) {
@@ -205,7 +205,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return useCamera ? getImageCount() + 1 : getImageCount();
+        return  getImageCount();
     }
 
     private int getImageCount() {
@@ -216,23 +216,23 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         return mImages;
     }
 
-    public void refresh(ArrayList<Image> data, boolean useCamera) {
+    public void refresh(ArrayList<Image> data) {
         mImages = data;
-        this.useCamera = useCamera;
+       // this.useCamera = useCamera;
         notifyDataSetChanged();
     }
 
     private Image getImage(int position) {
-        return mImages.get(useCamera ? position - 1 : position);
+        return mImages.get(position);
     }
 
     public Image getFirstVisibleImage(int firstVisibleItem) {
         if (mImages != null && !mImages.isEmpty()) {
-            if (useCamera) {
-                return mImages.get(firstVisibleItem > 0 ? firstVisibleItem - 1 : 0);
-            } else {
+            //if (useCamera) {
+              //  return mImages.get(firstVisibleItem > 0 ? firstVisibleItem - 1 : 0);
+            //} else {
                 return mImages.get(firstVisibleItem < 0 ? 0 : firstVisibleItem);
-            }
+            //}
         }
         return null;
     }
@@ -255,7 +255,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             int index = mImages.indexOf(mSelectImages.get(0));
             mSelectImages.clear();
             if (index != -1) {
-                notifyItemChanged(useCamera ? index + 1 : index);
+                notifyItemChanged(index);
             }
         }
     }

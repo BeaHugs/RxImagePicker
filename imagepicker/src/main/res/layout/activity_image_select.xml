@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,34 +13,33 @@
         android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/btn_back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/picture_icon_back" />
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/picture_icon_back" />
 
 
         <LinearLayout
             android:id="@+id/seleve_folder"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            >
+            android:layout_centerInParent="true">
 
 
             <TextView
                 android:id="@+id/tv_folder_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                android:singleLine="true"
-                android:maxEms="10"
                 android:ellipsize="end"
+                android:gravity="center"
+                android:maxEms="10"
+                android:singleLine="true"
                 android:text="最近项目"
+                android:textColor="@android:color/white"
                 android:textSize="18sp" />
 
             <ImageView
@@ -46,46 +47,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@mipmap/bga_pp_ic_arrow_down"
-                />
+                android:background="@mipmap/bga_pp_ic_arrow_down" />
 
         </LinearLayout>
 
 
-
-
-
-
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_image"
+
+    <RelativeLayout
+        android:id="@+id/hiht_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rl_bottom_bar"
         android:layout_below="@+id/rl_top_bar"
-        android:background="@color/rximage_color_white"
-        android:fadingEdge="none"
-        android:fadingEdgeLength="0dp"
-        android:overScrollMode="never"
-        android:scrollbars="vertical" />
+        tools:layoutAnimation="@null">
+
+        <com.wyb.baseui.widget.statusview.HintLayout
+            android:id="@+id/hl_image_select_hint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/from_bottom_layout"
+                android:overScrollMode="never"
+                android:scrollbars="vertical"
+                tools:itemCount="20"
+                tools:layoutManager="GridLayoutManager"
+                tools:listitem="@layout/image_select_item"
+                tools:spanCount="3" />
+
+        </com.wyb.baseui.widget.statusview.HintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_image_select_floating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            app:borderWidth="0px"
+            app:elevation="1dp"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/camera_ic" />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/rv_image"
+        android:layout_alignTop="@+id/hiht_fragment"
         android:background="#9e111212"
-        android:paddingBottom="5dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
         android:textColor="@android:color/white"
         android:textSize="12sp"
-        android:visibility="gone"
-        />
-
-
+        android:visibility="gone" />
 
 
     <RelativeLayout
@@ -99,8 +124,8 @@
             android:id="@+id/btn_folder"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:foreground="@drawable/btn_foreground_selector">
 
             <RelativeLayout
@@ -118,10 +143,10 @@
                     android:background="@drawable/btn_green_shape"
                     android:gravity="center"
                     android:minWidth="50dp"
-                    android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="5dp"
                     android:text="@string/selector_send"
                     android:textColor="@android:color/white"
                     android:textSize="14sp" />

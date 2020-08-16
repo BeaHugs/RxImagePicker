@@ -30,6 +30,10 @@
             />
 
 
+
+        <activity android:name="org.beahugs.imagepicker.ui.ImageSelectActivity"/>
+
+
     </application>
 
 </manifest>

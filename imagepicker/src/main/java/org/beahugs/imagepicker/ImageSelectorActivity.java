@@ -2,6 +2,7 @@ package org.beahugs.imagepicker;
 
 import android.Manifest;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -17,6 +19,7 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.content.FileProvider;
@@ -30,6 +33,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,6 +43,8 @@ import android.widget.TextView;
 
 
 import com.donkingliang.imageselector.R;
+import com.wyb.baseui.widget.statusview.HintLayout;
+import com.wyb.baseui.widget.statusview.StatusAction;
 
 import org.beahugs.imagepicker.adapter.FolderAdapter;
 import org.beahugs.imagepicker.adapter.ImageAdapter;
@@ -69,7 +75,12 @@ import static org.beahugs.imagepicker.view.ImageFolderPopupWindow.ANIM_DURATION;
  * @Author: wangyibo
  * @Version: 1.0
  */
-public class ImageSelectorActivity extends AppCompatActivity implements FolderAdapter.OnFolderSelectListener, View.OnClickListener, ImageFolderPopupWindow.PoPupWindowOutsideImpl {
+public final class ImageSelectorActivity extends AppCompatActivity
+        implements FolderAdapter.OnFolderSelectListener,
+        View.OnClickListener,
+        ImageFolderPopupWindow.PoPupWindowOutsideImpl ,
+        StatusAction
+{
 
     private TextView tvTime;
     private TextView tvFolderName;
@@ -119,6 +130,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     private LinearLayout seleve_folder;
     private int fileType;
     private RequestConfig config;
+    private HintLayout hl_image_select_hint;
 
     /**
      * 启动图片选择器
@@ -183,6 +195,8 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
             checkPermissionAndLoadImages();
             setSelectImageCount(0);
         }
+
+
     }
 
     /**
@@ -196,6 +210,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initView() {
         rvImage = findViewById(R.id.rv_image);
         tvConfirm = findViewById(R.id.tv_confirm);
@@ -206,6 +221,8 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
         rl_top_bar = findViewById(R.id.rl_top_bar);
         down_image = findViewById(R.id.down_image);
         seleve_folder = findViewById(R.id.seleve_folder);
+        hl_image_select_hint = findViewById(R.id.hl_image_select_hint);
+
     }
 
     private void initListener() {
@@ -280,6 +297,7 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
 
         rvImage.setLayoutManager(mLayoutManager);
         mAdapter = new ImageAdapter(this, mMaxCount, isSingle, canPreview);
+
         rvImage.setAdapter(mAdapter);
         ((SimpleItemAnimator) rvImage.getItemAnimator()).setSupportsChangeAnimations(false);
         if (mFolders != null && !mFolders.isEmpty()) {
@@ -347,8 +365,11 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
             mFolder = folder;
             tvFolderName.setText(folder.getName());
             rvImage.scrollToPosition(0);
-            mAdapter.refresh(folder.getImages(), folder.isUseCamera());
+            mAdapter.refresh(folder.getImages());
         }
+        rvImage.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this, R.anim.fall_down_layout));
+        rvImage.scheduleLayoutAnimation();
+
     }
 
     private void setSelectImageCount(int count) {
@@ -632,7 +653,11 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     /**
      * 从SDCard加载图片。
      */
+    @SuppressLint("NewApi")
     private void loadImageForSDCard() {
+
+        showLoading();
+
         ImageModel.loadImageForSDCard(this, new ImageModel.DataCallback() {
             @Override
             public void onSuccess(ArrayList<Folder> folders) {
@@ -641,14 +666,21 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
                     @Override
                     public void run() {
                         if (mFolders != null && !mFolders.isEmpty()) {
+                            if(mFolders.get(0).getImages().size() == 0){
+                                showEmpty();
+                                return;
+                            }
+                            showComplete();
                             initFolderList();
-                            mFolders.get(0).setUseCamera(useCamera);
+                            //mFolders.get(0).setUseCamera(useCamera);
                             setFolder(mFolders.get(0));
                             if (mSelectedImages != null && mAdapter != null) {
                                 mAdapter.setSelectedImages(mSelectedImages);
                                 mSelectedImages = null;
                                 setSelectImageCount(mAdapter.getSelectImages().size());
                             }
+                        }else{
+                            showEmpty();
                         }
                     }
                 });
@@ -750,11 +782,19 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * 点击选择文件
+     * @param folder
+     */
     @Override
     public void OnFolderSelect(Folder folder) {
         //文件数据
         ArrayList<Image> images = folder.getImages();
-        mAdapter.refresh(images, true);
+        mAdapter.refresh(images);
+
+        rvImage.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(this, R.anim.fall_down_layout));
+        rvImage.scheduleLayoutAnimation();
+
         //更新文件名
         tvFolderName.setText(folder.getName());
         mImageFolderPopupWindow.dismiss();
@@ -765,8 +805,16 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     public void onClick(View v) {
         //选择文件夹
         if (v.getId() == R.id.seleve_folder) {
+
+            if (mImageFolderPopupWindow==null){
+                return;
+            }
+
             mImageFolderPopupWindow.showAsDropDown(rl_top_bar, 0, 0);
 
+            WindowManager.LayoutParams lp = getWindow().getAttributes();
+            lp.alpha = 0.5f;
+            getWindow().setAttributes(lp);
             ViewCompat.animate(down_image).setDuration(ANIM_DURATION).rotation(-180).start();
         }
     }
@@ -777,5 +825,10 @@ public class ImageSelectorActivity extends AppCompatActivity implements FolderAd
     @Override
     public void outsideDismiss() {
         ViewCompat.animate(down_image).setDuration(ANIM_DURATION).rotation(0).start();
+    }
+
+    @Override
+    public HintLayout getHintLayout() {
+        return hl_image_select_hint;
     }
 }

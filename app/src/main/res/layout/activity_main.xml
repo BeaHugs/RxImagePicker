@@ -60,7 +60,8 @@
     <TextView
         android:id="@+id/open_dialog"
         style="@style/MatchWrapTv"
-        android:text="提示框" />
+        android:text="时间轴" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_image"
         android:layout_width="match_parent"
