@@ -65,7 +65,7 @@ public class ImageModel {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteExternalPermission == PackageManager.PERMISSION_GRANTED) {
             //有权限，加载图片。
-            loadImageForSDCard(context, true, null,false);
+            loadImageForSDCard(context, true, null, false);
         }
     }
 
@@ -97,8 +97,8 @@ public class ImageModel {
      * @param context
      * @param callback
      */
-    public static void loadImageForSDCard(final Context context, final DataCallback callback,boolean isShowVideo) {
-        loadImageForSDCard(context, false, callback,isShowVideo);
+    public static void loadImageForSDCard(final Context context, final DataCallback callback, boolean isShowVideo) {
+        loadImageForSDCard(context, false, callback, isShowVideo);
     }
 
     /**
@@ -120,14 +120,14 @@ public class ImageModel {
                     if (cacheImageList == null || isPreload) {
                         ArrayList<Image> imageList = loadImage(context);
 
-                        if (!isShowVideo){
+                        if (!isShowVideo) {
                             ArrayList<Image> videoList = loadVideo(context);
-                            Log.i("videosize",videoList.size()+"");
+                            Log.i("videosize", videoList.size() + "");
                             imageList.addAll(videoList);
                         }
 
                         //2020年3月5日   为了显示视频   需要优化
-                       // ArrayList<Image> images = new ArrayList<>();
+                        // ArrayList<Image> images = new ArrayList<>();
 
 //                        for (Image image : imageList) {
 //                            //过滤未下载完成或者不存在的文件
@@ -139,7 +139,7 @@ public class ImageModel {
 //                                images.add(image);
 //                            }
 //                        }
-                   //     Log.i("imagesimagesimages",images.size());
+                        //     Log.i("imagesimagesimages",images.size());
                         Collections.reverse(imageList);
                         folders = splitFolder(context, imageList);
                         if (isNeedCache) {
@@ -149,7 +149,7 @@ public class ImageModel {
                         folders = cacheImageList;
                     }
 
-                    Log.i("filesize",folders.size()+"");
+                    Log.i("filesize", folders.size() + "");
                     if (callback != null) {
                         callback.onSuccess(folders);
                     }
@@ -174,7 +174,8 @@ public class ImageModel {
                         MediaStore.Images.Media.DISPLAY_NAME,
                         MediaStore.Images.Media.DATE_ADDED,
                         MediaStore.Images.Media._ID,
-                        MediaStore.Images.Media.MIME_TYPE},
+                        MediaStore.Images.Media.MIME_TYPE,
+                        MediaStore.MediaColumns.SIZE},
                 null
                 ,
                 null,
@@ -185,6 +186,14 @@ public class ImageModel {
         //读取扫描到的图片
         if (mCursor != null) {
             while (mCursor.moveToNext()) {
+
+                //文件大小
+                long fileSize = mCursor.getLong(mCursor.getColumnIndex(MediaStore.MediaColumns.SIZE));
+                if (fileSize == 0) {
+                    continue;
+                }
+
+
                 // 获取图片的路径
                 long id = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Images.Media._ID));
                 String path = mCursor.getString(
@@ -200,9 +209,11 @@ public class ImageModel {
                 String mimeType = mCursor.getString(
                         mCursor.getColumnIndex(MediaStore.Images.Media.MIME_TYPE));
 
+
                 //获取图片uri
                 Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI.buildUpon()
                         .appendPath(String.valueOf(id)).build();
+
 
                 images.add(new Image(path, time, name, mimeType, uri));
             }
@@ -217,7 +228,8 @@ public class ImageModel {
                 MediaStore.Video.Media.DISPLAY_NAME,
                 MediaStore.Video.Media.DATE_ADDED,
                 MediaStore.Video.Media._ID,
-                MediaStore.Video.Media.MIME_TYPE};
+                MediaStore.Video.Media.MIME_TYPE,
+                MediaStore.Video.Media.SIZE};
         Uri mvideoUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
         ContentResolver mContentResolver = context.getContentResolver();
 
@@ -231,19 +243,27 @@ public class ImageModel {
         //读取扫描到的图片
         if (mCursor != null) {
             while (mCursor.moveToNext()) {
+
+
+                //文件大小
+                long fileSize = mCursor.getLong(mCursor.getColumnIndex(MediaStore.MediaColumns.SIZE));
+                if (fileSize == 0) {
+                    continue;
+                }
+
                 // 获取图片的路径
                 long id = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Video.Media._ID));
-                String path ;//= mCursor.getString(
+                String path;//= mCursor.getString(
 //                        mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
 
                 //2020年3月29日 在android10机型上面加载视频失败
                 //https://blog.csdn.net/lf0814/article/details/99683112
-                if(VersionUtils.isAndroidQ()){
-                    path =MediaStore.Video.Media
+                if (VersionUtils.isAndroidQ()) {
+                    path = MediaStore.Video.Media
                             .EXTERNAL_CONTENT_URI
                             .buildUpon()
                             .appendPath(String.valueOf(id)).build().toString();
-                }else{
+                } else {
                     path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
                 }
 

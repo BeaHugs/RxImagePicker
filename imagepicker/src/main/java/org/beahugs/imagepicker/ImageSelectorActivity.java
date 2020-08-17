@@ -43,6 +43,7 @@ import android.widget.TextView;
 
 
 import com.donkingliang.imageselector.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.wyb.baseui.widget.statusview.HintLayout;
 import com.wyb.baseui.widget.statusview.StatusAction;
 
@@ -131,6 +132,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
     private int fileType;
     private RequestConfig config;
     private HintLayout hl_image_select_hint;
+    private FloatingActionButton fab_image_select_floating;
 
     /**
      * 启动图片选择器
@@ -171,6 +173,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
         fragment.startActivityForResult(intent, requestCode);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -222,6 +225,12 @@ public final class ImageSelectorActivity extends AppCompatActivity
         down_image = findViewById(R.id.down_image);
         seleve_folder = findViewById(R.id.seleve_folder);
         hl_image_select_hint = findViewById(R.id.hl_image_select_hint);
+        fab_image_select_floating = findViewById(R.id.fab_image_select_floating);
+        if (useCamera){
+            fab_image_select_floating.setVisibility(View.VISIBLE);
+        }
+
+
 
     }
 
@@ -281,6 +290,18 @@ public final class ImageSelectorActivity extends AppCompatActivity
 
 
         seleve_folder.setOnClickListener(this);
+
+
+        /**
+         * 打开相机
+         */
+        fab_image_select_floating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkPermissionAndCamera();
+            }
+        });
+
     }
 
     /**

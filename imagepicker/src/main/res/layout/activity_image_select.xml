@@ -91,6 +91,7 @@
             android:layout_marginBottom="20dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:visibility="gone"
             app:borderWidth="0px"
             app:elevation="1dp"
             app:fabSize="normal"

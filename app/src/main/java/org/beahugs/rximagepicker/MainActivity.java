@@ -20,7 +20,7 @@ import com.ui.timeline.activity.MainTimeLineActivity;
 
 import org.beahugs.imagepicker.permission.OnPerCallBack;
 import org.beahugs.imagepicker.permission.RxPermission;
-import org.beahugs.imagepicker.ui.ImageSelectActivity;
+
 import org.beahugs.imagepicker.utils.ImageSelector;
 
 import org.beahugs.rximagepicker.adapter.ImageAdapter;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //.setCropRatio(1.0f) // 图片剪切的宽高比,默认1.0f。宽固定为手机屏幕的宽。
                         .setSingle(add_single.isChecked())  //设置是否单选
                         .canPreview(add_preview.isChecked()) //是否点击放大图片查看,，默认为true
-                        .setMaxSelectCount(9)//如果设置大于0
+                        .setMaxSelectCount(1)//如果设置大于0
                         .setFileType(0)
                         .start(this, REQUEST_CODE); // 打开相册
                 break;
