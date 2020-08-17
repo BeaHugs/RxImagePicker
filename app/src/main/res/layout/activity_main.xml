@@ -29,26 +29,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <CheckBox
-            android:id="@+id/add_crop"
-            style="@style/AutoWrap"
-            android:text="是否裁剪(默认单选)"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            />
-        <CheckBox
-            android:id="@+id/add_preview"
-            style="@style/AutoWrap"
-            android:text="是否(图片预览详情可以缩放)"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            />
 
-    </LinearLayout>
 
 
 
@@ -57,10 +38,6 @@
         style="@style/MatchWrapTv"
         android:text="打开相册" />
 
-    <TextView
-        android:id="@+id/open_dialog"
-        style="@style/MatchWrapTv"
-        android:text="时间轴" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_image"

@@ -44,8 +44,6 @@ dependencies {
     implementation project(':imagepicker')
     //implementation project(':rxpopup')
 
-    implementation project(':timeline')
-
     implementation project(':baseui')
 
 

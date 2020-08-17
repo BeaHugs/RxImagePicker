@@ -9,6 +9,17 @@
 
     <color name="rximage_color_grey">#393a3e</color>
 
+    <color name="rximage_color_e">#EEEEEE</color>
+    <color name="rximage_color_eb">#ebebeb</color>
+    <color name="rximage_color_4d">#4d4d4d</color>
+    <color name="rximage_color_9b">#9b9b9b</color>
+
+    <color name="rximage_color_20">#20000000</color>
+
+    <color name="rximage_color_80">#80000000</color>
+
+    <color name="rximage_color_half_white">#99FFFFFF</color>
+
 
 
 </resources>

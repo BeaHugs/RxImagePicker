@@ -1,16 +1,17 @@
 package org.beahugs.imagepicker.adapter;
 
 import android.content.Context;
+
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.net.Uri;
+import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -19,12 +20,14 @@ import com.donkingliang.imageselector.R;
 
 import org.beahugs.imagepicker.VideoPlayActivity;
 import org.beahugs.imagepicker.config.MimeType;
+import org.beahugs.imagepicker.dialog.PictureCustomDialog;
 import org.beahugs.imagepicker.entry.Image;
 import org.beahugs.imagepicker.utils.DateUtils;
 import org.beahugs.imagepicker.utils.MediaUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
 
 import java.util.ArrayList;
+
 /**
  * @Author: wangyibo
  * @Version: 1.0
@@ -89,12 +92,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
             final boolean isImage = MimeType.eqImage(mimeType);
 
-            Log.i("image.getPath",isImage+"");
+            Log.i("image.getPath", isImage + "");
             //2020年3月8日  视频格式
-            if (!isImage){
+            if (!isImage) {
                 holder.tv_duration.setVisibility(View.VISIBLE);
                 //String path = image.getUri().getPath();
-                Log.i("image.getPath",image.getPath());
+                Log.i("image.getPath", image.getPath());
                 String video_time = DateUtils.formatDurationTime(MediaUtils.extractDuration(mContext, VersionUtils.isAndroidQ(), image.getPath()));
                 holder.tv_duration.setText(video_time);
             }
@@ -109,36 +112,33 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             holder.ivSelectIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //if (isImage){
-                        checkedImage(holder, image);
-                    //}else{
-                       // Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
-                       // VideoPlayActivity.start(mContext,image.getPath());
-                    //}
 
+                    checkedImage(holder, image);
                 }
             });
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (isImage){
+                    if (isImage) {
                         if (isViewImage) {
                             if (mItemClickListener != null) {
                                 int p = holder.getAdapterPosition();
                                 //mItemClickListener.OnItemClick(image, useCamera ? p - 1 : p);
                             }
                         } else {
-                            checkedImage(holder, image);
+                            //checkedImage(holder, image);
                         }
-                    }else{
+                    } else {
                         //Toast.makeText(mContext,"视频不支持选择___待开发",Toast.LENGTH_LONG).show();
                         //image.getPath();
-                        VideoPlayActivity.start(mContext,image.getPath());
+                        VideoPlayActivity.start(mContext, image.getPath());
 
                     }
                 }
             });
+
+            maskProcessing(holder, image);
         } else if (getItemViewType(position) == TYPE_CAMERA) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -149,6 +149,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 }
             });
         }
+
+
     }
 
     @Override
@@ -156,8 +158,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 //        if (useCamera && position == 0) {
 //            return TYPE_CAMERA;
 //        } else {
-            return TYPE_IMAGE;
-       // }
+        return TYPE_IMAGE;
+        // }
     }
 
     private void checkedImage(ViewHolder holder, Image image) {
@@ -165,17 +167,28 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             //如果图片已经选中，就取消选中
             unSelectImage(image);
             setItemSelect(holder, false);
+            notifyDataSetChanged();
         } else if (isSingle) {
             //如果是单选，就先清空已经选中的图片，再选中当前图片
             clearImageSelect();
             selectImage(image);
             setItemSelect(holder, true);
         } else if (mMaxCount <= 0 || mSelectImages.size() < mMaxCount) {
+
             //如果不限制图片的选中数量，或者图片的选中数量
             // 还没有达到最大限制，就直接选中当前图片。
             selectImage(image);
             setItemSelect(holder, true);
+
+            if (mSelectImages.size() >= mMaxCount) {
+                notifyDataSetChanged();
+            }
+        } else if (mSelectImages.size() >= mMaxCount) {
+            showPromptDialog("您最多选择" + mMaxCount + "张图片");
+            return;
         }
+
+
     }
 
     /**
@@ -205,7 +218,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return  getImageCount();
+        return getImageCount();
     }
 
     private int getImageCount() {
@@ -218,7 +231,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     public void refresh(ArrayList<Image> data) {
         mImages = data;
-       // this.useCamera = useCamera;
+        // this.useCamera = useCamera;
         notifyDataSetChanged();
     }
 
@@ -229,9 +242,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public Image getFirstVisibleImage(int firstVisibleItem) {
         if (mImages != null && !mImages.isEmpty()) {
             //if (useCamera) {
-              //  return mImages.get(firstVisibleItem > 0 ? firstVisibleItem - 1 : 0);
+            //  return mImages.get(firstVisibleItem > 0 ? firstVisibleItem - 1 : 0);
             //} else {
-                return mImages.get(firstVisibleItem < 0 ? 0 : firstVisibleItem);
+            return mImages.get(firstVisibleItem < 0 ? 0 : firstVisibleItem);
             //}
         }
         return null;
@@ -331,5 +344,32 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         void OnItemClick(Image image, int position);
 
         void OnCameraClick();
+    }
+
+    private void maskProcessing(ViewHolder viewHolder, Image image) {
+
+        boolean b = mSelectImages.size() >= mMaxCount;
+        boolean contains = mSelectImages.contains(image);
+        if (!contains && b) {
+            viewHolder.ivImage.setColorFilter(ContextCompat.getColor
+                    (mContext, R.color.rximage_color_half_white), PorterDuff.Mode.SRC_ATOP);
+            Log.i("maskProcessing","11111111");
+        } else {
+            viewHolder.ivImage.setColorFilter(ContextCompat.getColor
+                    (mContext, R.color.rximage_color_20), PorterDuff.Mode.SRC_ATOP);
+            Log.i("maskProcessing","22222222");
+        }
+    }
+
+    /**
+     * Tips
+     */
+    private void showPromptDialog(String content) {
+        PictureCustomDialog dialog = new PictureCustomDialog(mContext, R.layout.rximage_prompt_dialog);
+        TextView btnOk = dialog.findViewById(R.id.btnOk);
+        TextView tvContent = dialog.findViewById(R.id.tv_content);
+        tvContent.setText(content);
+        btnOk.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 }

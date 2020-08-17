@@ -185,11 +185,11 @@ public class ImageSelector {
             if (config.onlyTakePhoto) {
                 config.useCamera = true;
             }
-            if (config.isCrop) {
-                ImageClipActivity.openActivity(activity, requestCode, config);
-            } else {
+            //if (config.isCrop) {
+              //  ImageClipActivity.openActivity(activity, requestCode, config);
+            //} else {
                 ImageSelectorActivity.openActivity(activity, requestCode, config);
-            }
+            //}
         }
 
         /**

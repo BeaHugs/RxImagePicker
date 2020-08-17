@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.CheckBox;
 
 
-import com.ui.timeline.activity.MainTimeLineActivity;
 
 import org.beahugs.imagepicker.permission.OnPerCallBack;
 import org.beahugs.imagepicker.permission.RxPermission;
@@ -51,12 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAdapter = new ImageAdapter(this);
         rvImage.setAdapter(mAdapter);
         findViewById(R.id.tv_moment_list_add).setOnClickListener(this);
-        findViewById(R.id.open_dialog).setOnClickListener(this);
 
         add_single = findViewById(R.id.add_single);
         add_camera = findViewById(R.id.add_camera);
-        add_crop = findViewById(R.id.add_crop);
-        add_preview = findViewById(R.id.add_preview);
 
 
 
@@ -107,18 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //单选
                 ImageSelector.builder()
                         .useCamera(add_camera.isChecked()) // 使用拍照
-                        .setCrop(add_crop.isChecked())  // 使用图片剪切
-                        //.setCropRatio(1.0f) // 图片剪切的宽高比,默认1.0f。宽固定为手机屏幕的宽。
                         .setSingle(add_single.isChecked())  //设置是否单选
-                        .canPreview(add_preview.isChecked()) //是否点击放大图片查看,，默认为true
-                        .setMaxSelectCount(1)//如果设置大于0
+                        .setMaxSelectCount(2)//如果设置大于0
                         .setFileType(0)
                         .start(this, REQUEST_CODE); // 打开相册
-                break;
-            case R.id.open_dialog:
-               // startActivity(new Intent(this, DiaLogActivity.class));
-                //Toast.makeText(this,"注释了...",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, MainTimeLineActivity.class));
                 break;
 
         }

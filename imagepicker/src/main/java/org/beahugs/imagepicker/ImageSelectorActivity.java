@@ -79,9 +79,8 @@ import static org.beahugs.imagepicker.view.ImageFolderPopupWindow.ANIM_DURATION;
 public final class ImageSelectorActivity extends AppCompatActivity
         implements FolderAdapter.OnFolderSelectListener,
         View.OnClickListener,
-        ImageFolderPopupWindow.PoPupWindowOutsideImpl ,
-        StatusAction
-{
+        ImageFolderPopupWindow.PoPupWindowOutsideImpl,
+        StatusAction {
 
     private TextView tvTime;
     private TextView tvFolderName;
@@ -226,10 +225,9 @@ public final class ImageSelectorActivity extends AppCompatActivity
         seleve_folder = findViewById(R.id.seleve_folder);
         hl_image_select_hint = findViewById(R.id.hl_image_select_hint);
         fab_image_select_floating = findViewById(R.id.fab_image_select_floating);
-        if (useCamera){
+        if (useCamera) {
             fab_image_select_floating.setVisibility(View.VISIBLE);
         }
-
 
 
     }
@@ -565,8 +563,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
                     images.add(mCameraImagePath);
                 }
                 saveImageAndFinish(images, true);
-            }
-            else {
+            } else {
                 if (onlyTakePhoto) {
                     finish();
                 }
@@ -687,7 +684,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
                     @Override
                     public void run() {
                         if (mFolders != null && !mFolders.isEmpty()) {
-                            if(mFolders.get(0).getImages().size() == 0){
+                            if (mFolders.get(0).getImages().size() == 0) {
                                 showEmpty();
                                 return;
                             }
@@ -700,7 +697,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
                                 mSelectedImages = null;
                                 setSelectImageCount(mAdapter.getSelectImages().size());
                             }
-                        }else{
+                        } else {
                             showEmpty();
                         }
                     }
@@ -805,6 +802,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
 
     /**
      * 点击选择文件
+     *
      * @param folder
      */
     @Override
@@ -827,7 +825,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
         //选择文件夹
         if (v.getId() == R.id.seleve_folder) {
 
-            if (mImageFolderPopupWindow==null){
+            if (mImageFolderPopupWindow == null) {
                 return;
             }
 
