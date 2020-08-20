@@ -1,5 +1,6 @@
 package org.beahugs.imagepicker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.donkingliang.imageselector.R;
 
+import org.beahugs.imagepicker.video.SuperVideoView;
+
 /**
  * @ClassName: VideoPlayActivity
  * @Author: wangyibo
@@ -19,19 +22,21 @@ import com.donkingliang.imageselector.R;
  */
 public class VideoPlayActivity extends AppCompatActivity {
 
-    private VideoView video_view;
+    private SuperVideoView video_view;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
 
         video_view = findViewById(R.id.video_view);
+        video_view.register(this);
         Intent intent = getIntent();
         String videoUrl = intent.getStringExtra("videoUrl");
         Log.i("videoUrl",videoUrl);
-         video_view.setVideoPath(videoUrl);
-        video_view.start();
+        video_view.setVideoPath(videoUrl);
+        //video_view.start();
 
 
     }
