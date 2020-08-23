@@ -20,7 +20,6 @@
         android:textStyle="bold" />
 
     <View
-        android:id="@+id/bottom_line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/rximage_color_e" />

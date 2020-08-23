@@ -13,12 +13,5 @@
     <string name="selector_cancel">取消</string>
     <string name="selector_hint">提示</string>
 
-    <string name="crop__saving" translatable="false">正在保存照片…</string>
-    <string name="crop__wait" translatable="false">请等待…</string>
-    <string name="crop__pick_error" translatable="false">无效的图片</string>
-
-    <string name="crop__done" translatable="false">完成</string>
-    <string name="crop__cancel" tools:ignore="ButtonCase" translatable="false">取消</string>
-
     <string name="selector_permissions_hint">该相册需要赋予访问存储和拍照的权限，请到“设置”>“应用”>“权限”中配置权限。</string>
 </resources>

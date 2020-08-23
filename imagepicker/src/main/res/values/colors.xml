@@ -1,22 +1,14 @@
 <resources>
 
-    <color name="crop__button_bar">#f3f3f3</color>
-    <color name="crop__button_text">#666666</color>
-    <color name="crop__selector_pressed">#1a000000</color>
-    <color name="crop__selector_focused">#77000000</color>
-
     <color name="rximage_color_white">#FFFFFF</color>
 
     <color name="rximage_color_grey">#393a3e</color>
 
     <color name="rximage_color_e">#EEEEEE</color>
-    <color name="rximage_color_eb">#ebebeb</color>
     <color name="rximage_color_4d">#4d4d4d</color>
     <color name="rximage_color_9b">#9b9b9b</color>
 
     <color name="rximage_color_20">#20000000</color>
-
-    <color name="rximage_color_80">#80000000</color>
 
     <color name="rximage_color_half_white">#99FFFFFF</color>
 
