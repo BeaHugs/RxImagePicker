@@ -27,11 +27,13 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity android:name="org.beahugs.imagepicker.VideoPlayActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenTheme"
             />
 
 
-
-        <activity android:name="org.beahugs.imagepicker.ui.ImageSelectActivity"/>
 
 
     </application>

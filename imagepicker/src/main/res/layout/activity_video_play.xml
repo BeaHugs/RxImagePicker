@@ -6,10 +6,10 @@
 
 
 
-    <org.beahugs.imagepicker.video.SuperVideoView
+    <com.wyb.videoplay.view.VideoPlayer
         android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="260dp"
         android:layout_centerInParent="true"
         />
 

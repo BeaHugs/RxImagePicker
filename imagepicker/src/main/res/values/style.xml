@@ -40,8 +40,13 @@
 
         <!-- 自己想要的背景 -->
         <item name="android:windowBackground">@android:color/transparent</item>
+
     </style>
 
+
+    <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 
 </resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="zz_player_network_invalid">网络异常，请检查后再试</string>
+    <string name="app_name">zzPlayer</string>
+</resources>
