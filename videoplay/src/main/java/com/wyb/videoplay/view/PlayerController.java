@@ -77,7 +77,7 @@ public class PlayerController extends FrameLayout implements View.OnClickListene
     }
 
     private void initView(Context context) {
-        inflate(context, R.layout.zz_video_player_controller, this);
+        inflate(context, R.layout.video_player_controller, this);
 
         View rlPlayPause = findViewById(R.id.rl_play_pause);
         mIvPlayPause = (ImageView) findViewById(R.id.iv_play_pause);

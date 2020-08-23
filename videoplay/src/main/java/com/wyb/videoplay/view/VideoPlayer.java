@@ -395,7 +395,7 @@ public class VideoPlayer extends RelativeLayout implements
 
     private void initView(Context context) {
         mContext = context;
-        inflate(context, R.layout.zz_video_player, this);
+        inflate(context, R.layout.video_player, this);
         mRlPlayerContainer = findViewById(R.id.rl_player);
         mVv = (ZZVideoView) findViewById(R.id.zzvv_main);
         mTitleBar = (PlayerTitleBar) findViewById(R.id.pt_title_bar);
@@ -669,15 +669,16 @@ public class VideoPlayer extends RelativeLayout implements
                 // 播放结束(onComplete)后,点击播放按钮,开始播放时初次读取到的时间值是视频结束位置
                 int currentUpdateTime = getCurrentTime();
 
-
-                if (currentUpdateTime >= 1000 && Math.abs(currentUpdateTime - mLastUpdateTime) >= 800) {
+                if (currentUpdateTime >= 0||(currentUpdateTime >= 1000 && Math.abs(currentUpdateTime - mLastUpdateTime) >= 800)) {
                     mHandler.sendEmptyMessage(MSG_UPDATE_PROGRESS_TIME);
                     mLastUpdateTime = currentUpdateTime;
                     mLastPlayingPos = 0;
                     mCurrentPlayState = PlayState.PLAY;
                     isLoading(false);
+                    Log.i("videoplayer","if");
                 } else {
                     isLoading(true);
+                    Log.i("videoplayer","else");
                 }
 
             }

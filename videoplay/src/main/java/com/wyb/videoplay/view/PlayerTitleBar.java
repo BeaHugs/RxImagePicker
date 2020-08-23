@@ -44,7 +44,7 @@ public class PlayerTitleBar extends LinearLayout implements View.OnClickListener
     }
 
     private void initView(Context context) {
-        inflate(context, R.layout.zz_video_player_title_bar, this);
+        inflate(context, R.layout.video_player_title_bar, this);
         View rlBack = findViewById(R.id.rl_back);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
 

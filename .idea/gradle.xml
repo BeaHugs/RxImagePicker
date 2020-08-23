@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/baseui" />
             <option value="$PROJECT_DIR$/imagepicker" />
+            <option value="$PROJECT_DIR$/videoplay" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
