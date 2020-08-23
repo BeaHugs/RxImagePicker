@@ -55,14 +55,14 @@ import static com.wyb.videoplay.util.OrientationUtil.HORIZONTAL;
 import static com.wyb.videoplay.util.OrientationUtil.VERTICAL;
 
 /**
- * Created by zxz on 2016/4/28.
+ * VideoPlayer
  */
 public class VideoPlayer extends RelativeLayout implements
         View.OnTouchListener {
 
     private Context mContext;
     private PlayerTitleBar mTitleBar;
-    private ZZVideoView mVv;
+    private SuperVideoView mVv;
     private PlayerController mController;
     private static final String TAG = "zzVideoPlayer";
     private boolean barsIfShow = true;//标题栏控制栏是否显示
@@ -397,7 +397,7 @@ public class VideoPlayer extends RelativeLayout implements
         mContext = context;
         inflate(context, R.layout.video_player, this);
         mRlPlayerContainer = findViewById(R.id.rl_player);
-        mVv = (ZZVideoView) findViewById(R.id.zzvv_main);
+        mVv = (SuperVideoView) findViewById(R.id.zzvv_main);
         mTitleBar = (PlayerTitleBar) findViewById(R.id.pt_title_bar);
         mController = (PlayerController) findViewById(R.id.pc_controller);
 

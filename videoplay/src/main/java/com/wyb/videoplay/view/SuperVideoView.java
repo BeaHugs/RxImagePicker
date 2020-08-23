@@ -8,29 +8,29 @@ import android.util.AttributeSet;
 import android.widget.VideoView;
 
 /**
- * Created by zxz on 2016/4/28.
+ * SuperVideoView
  */
-public class ZZVideoView extends VideoView {
+public class SuperVideoView extends VideoView {
 
     private String mCurrentVideoPath;
 
-    public ZZVideoView(Context context) {
+    public SuperVideoView(Context context) {
         super(context);
         init(context);
     }
 
-    public ZZVideoView(Context context, AttributeSet attrs) {
+    public SuperVideoView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public ZZVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SuperVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ZZVideoView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SuperVideoView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }

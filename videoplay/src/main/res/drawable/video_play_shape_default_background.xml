@@ -3,5 +3,5 @@
        android:shape="line">
     <stroke
         android:width="2.0dip"
-        android:color="@color/zz_player_progress_first"/>
+        android:color="@color/video_play_progress_first"/>
 </shape>

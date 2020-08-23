@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/black">
 
-    <com.wyb.videoplay.view.ZZVideoView
+    <com.wyb.videoplay.view.SuperVideoView
         android:id="@+id/zzvv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateDrawable="@drawable/zz_player_loading_rotate"
+            android:indeterminateDrawable="@drawable/video_play_loading_rotate"
             android:maxHeight="38dp"
             android:maxWidth="38dp"
             android:minHeight="38dp"

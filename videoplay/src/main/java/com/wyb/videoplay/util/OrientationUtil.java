@@ -10,7 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * Created by zxz on 2016/5/4.
  * 屏幕方向
  */
 public class OrientationUtil {

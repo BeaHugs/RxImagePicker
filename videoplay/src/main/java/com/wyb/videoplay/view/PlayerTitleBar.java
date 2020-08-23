@@ -12,11 +12,6 @@ import android.widget.TextView;
 import com.wyb.videoplay.R;
 import com.wyb.videoplay.control.ITitleBarImpl;
 
-
-
-/**
- * Created by zxz on 2016/4/28.
- */
 public class PlayerTitleBar extends LinearLayout implements View.OnClickListener {
 
     private TextView mTvTitle;
@@ -44,7 +39,7 @@ public class PlayerTitleBar extends LinearLayout implements View.OnClickListener
     }
 
     private void initView(Context context) {
-        inflate(context, R.layout.video_player_title_bar, this);
+        inflate(context, R.layout.video_play_title_bar, this);
         View rlBack = findViewById(R.id.rl_back);
         mTvTitle = (TextView) findViewById(R.id.tv_title);
 

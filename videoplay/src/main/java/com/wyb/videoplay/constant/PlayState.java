@@ -1,7 +1,6 @@
 package com.wyb.videoplay.constant;
 
 /**
- * Created by zxz on 2016/5/3.
  * 播放状态
  */
 public class PlayState {

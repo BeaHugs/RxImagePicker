@@ -77,7 +77,7 @@ public class PlayerController extends FrameLayout implements View.OnClickListene
     }
 
     private void initView(Context context) {
-        inflate(context, R.layout.video_player_controller, this);
+        inflate(context, R.layout.video_play_controller, this);
 
         View rlPlayPause = findViewById(R.id.rl_play_pause);
         mIvPlayPause = (ImageView) findViewById(R.id.iv_play_pause);
@@ -85,9 +85,9 @@ public class PlayerController extends FrameLayout implements View.OnClickListene
         mTvTotalTime = (TextView) findViewById(R.id.tv_total_time);
 
         mCsb = (CustomSeekBar) findViewById(R.id.csb);
-        setProgressLayerDrawables(R.drawable.zz_player_shape_default_background,
-                R.drawable.zz_player_shape_default_second_progress,
-                R.drawable.zz_player_shape_default_progress);
+        setProgressLayerDrawables(R.drawable.video_play_shape_default_background,
+                R.drawable.video_play_shape_default_second_progress,
+                R.drawable.video_play_shape_default_progress);
 
         mProgressLayerDrawable = new LayerDrawable(mProgressLayers);
         mCsb.setProgressDrawable(mProgressLayerDrawable);

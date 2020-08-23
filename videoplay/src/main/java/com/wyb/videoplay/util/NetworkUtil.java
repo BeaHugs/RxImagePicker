@@ -5,10 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
-
-
 /**
- * Created by zxz on 2016/5/3.
+ * 网络管理
  */
 public class NetworkUtil {
     /**

@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@android:id/background"
-        android:drawable="@drawable/zz_player_shape_default_background"/>
+        android:drawable="@drawable/video_play_shape_default_background"/>
 
     <item
         android:id="@android:id/secondaryProgress"
-        android:drawable="@drawable/zz_player_shape_default_second_progress"/>
+        android:drawable="@drawable/video_play_shape_default_second_progress"/>
 
     <item
         android:id="@android:id/progress"
-        android:drawable="@drawable/zz_player_shape_default_progress"/>
+        android:drawable="@drawable/video_play_shape_default_progress"/>
 </layer-list>
