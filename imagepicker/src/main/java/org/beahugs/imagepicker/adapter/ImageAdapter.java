@@ -71,10 +71,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         if (viewType == TYPE_IMAGE) {
             View view = mInflater.inflate(R.layout.adapter_images_item, parent, false);
             return new ViewHolder(view);
-        } else {
-            View view = mInflater.inflate(R.layout.adapter_camera, parent, false);
-            return new ViewHolder(view);
         }
+        return null;
+//        else {
+//            View view = mInflater.inflate(R.layout.adapter_camera, parent, false);
+//            return new ViewHolder(view);
+//        }
     }
 
     @Override
@@ -331,7 +333,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             ivMasking = itemView.findViewById(R.id.iv_masking);
             ivGif = itemView.findViewById(R.id.iv_gif);
 
-            ivCamera = itemView.findViewById(R.id.iv_camera);
+           // ivCamera = itemView.findViewById(R.id.iv_camera);
             tv_duration = itemView.findViewById(R.id.tv_duration);
         }
     }

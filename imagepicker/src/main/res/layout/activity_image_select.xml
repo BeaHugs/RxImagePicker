@@ -78,7 +78,6 @@
                 android:scrollbars="vertical"
                 tools:itemCount="20"
                 tools:layoutManager="GridLayoutManager"
-                tools:listitem="@layout/image_select_item"
                 tools:spanCount="3" />
 
         </com.wyb.baseui.widget.statusview.HintLayout>
