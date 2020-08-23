@@ -7,7 +7,7 @@ Android图片选择器、支持AndroidX，支持图片的单选、多选、图�
 | 文件夹 | 带相机 | 相册详情(可以缩放) | 演示 | 视频预览 |
 | ------------ | ------------- | ------------ | ------------- |------------- |
 | ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144442.jpg) | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144501_.png)  | ![相册](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144522_.png) | ![文件夹](https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png) |
-(https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20191212-144541.png) |
+(https://github.com/BeaHugs/RxImagePicker/blob/master/image/Screenshot_20200823_163503_2020%E5%B9%B48%E6%9C%8823%E6%97%A5.jpg) |
 
 
 **V1.0**
