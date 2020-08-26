@@ -107,8 +107,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                 Log.i("image.getPath", image.getPath());
                 String video_time = DateUtils.formatDurationTime(MediaUtils.extractDuration(mContext, VersionUtils.isAndroidQ(), image.getPath()));
                 holder.tv_duration.setText(video_time);
+            }else{
+                holder.tv_duration.setVisibility(View.GONE);
             }
-
 
             setItemSelect(holder, mSelectImages.contains(image));
 
