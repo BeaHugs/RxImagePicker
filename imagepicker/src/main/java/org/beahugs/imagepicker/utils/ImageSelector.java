@@ -140,6 +140,24 @@ public class ImageSelector {
             return this;
         }
 
+
+
+        public ImageSelectorBuilder setSelectImageOrVideo(boolean imageOrVideo){
+            config.imageOrVideo = imageOrVideo;
+            return this;
+        }
+
+//        public ImageSelectorBuilder setSelectOnlyImages(boolean onlyImages){
+//            config.onlyImages = onlyImages;
+//            return this;
+//        }
+//
+//        public ImageSelectorBuilder setSelectOnlyVideo(boolean onlyVideo){
+//            config.onlyVideo = onlyVideo;
+//            return this;
+//        }
+
+
         public ImageSelectorBuilder onlyTakePhoto(boolean onlyTakePhoto) {
             config.onlyTakePhoto = onlyTakePhoto;
             return this;

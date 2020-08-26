@@ -22,6 +22,7 @@ import org.beahugs.imagepicker.VideoPlayActivity;
 import org.beahugs.imagepicker.config.MimeType;
 import org.beahugs.imagepicker.dialog.PictureCustomDialog;
 import org.beahugs.imagepicker.entry.Image;
+import org.beahugs.imagepicker.entry.RequestConfig;
 import org.beahugs.imagepicker.utils.DateUtils;
 import org.beahugs.imagepicker.utils.MediaUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
  */
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
+    private RequestConfig config;
     private Context mContext;
     private ArrayList<Image> mImages;
     private LayoutInflater mInflater;
@@ -57,13 +59,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
      * @param maxCount    图片的最大选择数量，小于等于0时，不限数量，isSingle为false时才有用。
      * @param isSingle    是否单选
      * @param isViewImage 是否点击放大图片查看
+     * @param config
      */
-    public ImageAdapter(Context context, int maxCount, boolean isSingle, boolean isViewImage) {
+    public ImageAdapter(Context context, int maxCount, boolean isSingle, boolean isViewImage, RequestConfig config) {
         mContext = context;
         this.mInflater = LayoutInflater.from(mContext);
         mMaxCount = maxCount;
         this.isSingle = isSingle;
         this.isViewImage = isViewImage;
+        this.config = config;
+
     }
 
     @Override
@@ -165,6 +170,11 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     }
 
     private void checkedImage(ViewHolder holder, Image image) {
+
+//        String mimeType = image.getMimeType();
+//        Log.i("mimeType",mimeType);
+
+
         if (mSelectImages.contains(image)) {
             //如果图片已经选中，就取消选中
             unSelectImage(image);
@@ -182,9 +192,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             selectImage(image);
             setItemSelect(holder, true);
 
-            if (mSelectImages.size() >= mMaxCount) {
-                notifyDataSetChanged();
-            }
+            //if (mSelectImages.size() >= mMaxCount) {
+            notifyDataSetChanged();
+            //}
         } else if (mSelectImages.size() >= mMaxCount) {
             showPromptDialog("您最多选择" + mMaxCount + "张图片");
             return;
@@ -333,7 +343,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             ivMasking = itemView.findViewById(R.id.iv_masking);
             ivGif = itemView.findViewById(R.id.iv_gif);
 
-           // ivCamera = itemView.findViewById(R.id.iv_camera);
+            // ivCamera = itemView.findViewById(R.id.iv_camera);
             tv_duration = itemView.findViewById(R.id.tv_duration);
         }
     }
@@ -350,16 +360,43 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     private void maskProcessing(ViewHolder viewHolder, Image image) {
 
+        if (mSelectImages.size() > 0 &&
+                mSelectImages.size() < mMaxCount &&
+                !config.imageOrVideo
+        ) {
+            Image selectImage = mSelectImages.get(0);
+            String mimeType = selectImage.getMimeType();
+            boolean isImage = MimeType.eqImage(mimeType);
+            boolean isVideo = MimeType.eqVideo(mimeType);
+            String currentType = image.getMimeType();
+
+            if ((isVideo && MimeType.eqImage(currentType)) ||
+                    (isImage && MimeType.eqVideo(currentType))
+
+            ) {
+                viewHolder.ivImage.setColorFilter(ContextCompat.getColor
+                        (mContext, R.color.rximage_color_half_white), PorterDuff.Mode.SRC_ATOP);
+                viewHolder.ivSelectIcon.setEnabled(false);
+            } else {
+                viewHolder.ivImage.setColorFilter(ContextCompat.getColor
+                        (mContext, R.color.rximage_color_20), PorterDuff.Mode.SRC_ATOP);
+                viewHolder.ivSelectIcon.setEnabled(true);
+            }
+            return;
+        } else {
+            viewHolder.ivSelectIcon.setEnabled(true);
+        }
+
+
         boolean b = mSelectImages.size() >= mMaxCount;
         boolean contains = mSelectImages.contains(image);
+
         if (!contains && b) {
             viewHolder.ivImage.setColorFilter(ContextCompat.getColor
                     (mContext, R.color.rximage_color_half_white), PorterDuff.Mode.SRC_ATOP);
-            Log.i("maskProcessing","11111111");
         } else {
             viewHolder.ivImage.setColorFilter(ContextCompat.getColor
                     (mContext, R.color.rximage_color_20), PorterDuff.Mode.SRC_ATOP);
-            Log.i("maskProcessing","22222222");
         }
     }
 

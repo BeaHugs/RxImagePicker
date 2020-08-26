@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CheckBox add_single;
     private CheckBox add_camera;
     private CheckBox add_crop,add_preview;
+    private CheckBox imageOrVideo;
 
 
     @Override
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         add_single = findViewById(R.id.add_single);
         add_camera = findViewById(R.id.add_camera);
+        imageOrVideo = findViewById(R.id.imageOrVideo);
 
 
 
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ImageSelector.builder()
                         .useCamera(add_camera.isChecked()) // 使用拍照
                         .setSingle(add_single.isChecked())  //设置是否单选
+                        .setSelectImageOrVideo(imageOrVideo.isChecked())//可以选择图片和视频
                         .setMaxSelectCount(2)//如果设置大于0
                         .setFileType(0)
                         .start(this, REQUEST_CODE); // 打开相册

@@ -132,6 +132,8 @@ public final class ImageSelectorActivity extends AppCompatActivity
     private RequestConfig config;
     private HintLayout hl_image_select_hint;
     private FloatingActionButton fab_image_select_floating;
+    private boolean onlyVideo;
+    private boolean onlyImages;
 
     /**
      * 启动图片选择器
@@ -179,6 +181,8 @@ public final class ImageSelectorActivity extends AppCompatActivity
         Intent intent = getIntent();
         config = intent.getParcelableExtra(ImageSelector.KEY_CONFIG);
         mMaxCount = config.maxSelectCount;
+        onlyVideo = config.onlyVideo;
+        onlyImages = config.onlyImages;
         isSingle = config.isSingle;
         canPreview = config.canPreview;
         useCamera = config.useCamera;
@@ -315,7 +319,7 @@ public final class ImageSelectorActivity extends AppCompatActivity
         }
 
         rvImage.setLayoutManager(mLayoutManager);
-        mAdapter = new ImageAdapter(this, mMaxCount, isSingle, canPreview);
+        mAdapter = new ImageAdapter(this, mMaxCount, isSingle, canPreview,config);
 
         rvImage.setAdapter(mAdapter);
         ((SimpleItemAnimator) rvImage.getItemAnimator()).setSupportsChangeAnimations(false);
