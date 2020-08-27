@@ -25,6 +25,7 @@ import org.beahugs.imagepicker.ImagePicker;
 import org.beahugs.imagepicker.entry.Folder;
 import org.beahugs.imagepicker.entry.Image;
 import org.beahugs.imagepicker.utils.ImageUtil;
+import org.beahugs.imagepicker.utils.MediaUtils;
 import org.beahugs.imagepicker.utils.StringUtils;
 import org.beahugs.imagepicker.utils.UriUtils;
 import org.beahugs.imagepicker.utils.VersionUtils;
@@ -247,15 +248,15 @@ public class ImageModel {
 
                 //文件大小
                 long fileSize = mCursor.getLong(mCursor.getColumnIndex(MediaStore.MediaColumns.SIZE));
-                if (fileSize == 0) {
-                    continue;
-                }
+
+                //获取图片时间
+                long time = mCursor.getLong(
+                        mCursor.getColumnIndex(MediaStore.Video.Media.DATE_ADDED));
 
                 // 获取图片的路径
                 long id = mCursor.getLong(mCursor.getColumnIndex(MediaStore.Video.Media._ID));
                 String path;//= mCursor.getString(
 //                        mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
-
                 //2020年3月29日 在android10机型上面加载视频失败
                 //https://blog.csdn.net/lf0814/article/details/99683112
                 if (VersionUtils.isAndroidQ()) {
@@ -267,15 +268,18 @@ public class ImageModel {
                     path = mCursor.getString(mCursor.getColumnIndex(MediaStore.Video.Media.DATA));
                 }
 
+                long fileTime = MediaUtils.extractDuration(context, VersionUtils.isAndroidQ(), path);
+                Log.i("videoTime",fileTime+"");
+                if (fileSize == 0 || fileTime < 1000) {
+                    continue;
+                }
+
 
                 //获取图片名称
                 String name = mCursor.getString(
                         mCursor.getColumnIndex(MediaStore.Video.Media.DISPLAY_NAME));
-                //获取图片时间
-                long time = mCursor.getLong(
-                        mCursor.getColumnIndex(MediaStore.Video.Media.DATE_ADDED));
 
-                //获取图片类型
+               //获取图片类型
                 String mimeType = mCursor.getString(
                         mCursor.getColumnIndex(MediaStore.Video.Media.MIME_TYPE));
 

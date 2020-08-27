@@ -363,7 +363,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
         if (mSelectImages.size() > 0 &&
                 mSelectImages.size() < mMaxCount &&
-                !config.imageOrVideo
+                !config.imageOrVideo &&
+                !config.isSingle
         ) {
             Image selectImage = mSelectImages.get(0);
             String mimeType = selectImage.getMimeType();
