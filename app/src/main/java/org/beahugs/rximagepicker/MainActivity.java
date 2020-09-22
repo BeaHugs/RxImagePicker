@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 
-
-
 import org.beahugs.imagepicker.permission.OnPerCallBack;
 import org.beahugs.imagepicker.permission.RxPermission;
 
@@ -46,7 +44,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        rvImage = findViewById(R.id.rv_image);
+
+
+
+
+
+
+       rvImage = findViewById(R.id.rv_image);
         rvImage.setLayoutManager(new GridLayoutManager(this, 3));
         mAdapter = new ImageAdapter(this);
         rvImage.setAdapter(mAdapter);
