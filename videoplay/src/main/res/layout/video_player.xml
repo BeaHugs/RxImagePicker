@@ -5,20 +5,20 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/black">
 
-    <com.wyb.videoplay.view.SuperVideoView
+    <com.basics.videoplay.view.SuperVideoView
         android:id="@+id/zzvv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:background="@android:color/black"/>
 
-    <com.wyb.videoplay.view.PlayerTitleBar
+    <com.basics.videoplay.view.PlayerTitleBar
         android:id="@+id/pt_title_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/normal_bar_height"
         android:layout_alignParentTop="true"/>
 
-    <com.wyb.videoplay.view.PlayerController
+    <com.basics.videoplay.view.PlayerController
         android:id="@+id/pc_controller"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

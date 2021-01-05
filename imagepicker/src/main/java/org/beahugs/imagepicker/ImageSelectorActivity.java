@@ -44,8 +44,8 @@ import android.widget.TextView;
 
 import com.donkingliang.imageselector.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.wyb.baseui.widget.statusview.HintLayout;
-import com.wyb.baseui.widget.statusview.StatusAction;
+import com.basics.ui.widget.statusview.HintLayout;
+import com.basics.ui.widget.statusview.StatusAction;
 
 import org.beahugs.imagepicker.adapter.FolderAdapter;
 import org.beahugs.imagepicker.adapter.ImageAdapter;

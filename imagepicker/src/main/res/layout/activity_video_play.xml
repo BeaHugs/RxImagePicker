@@ -6,7 +6,7 @@
 
 
 
-    <com.wyb.videoplay.view.VideoPlayer
+    <com.basics.videoplay.view.VideoPlayer
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="260dp"

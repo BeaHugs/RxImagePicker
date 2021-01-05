@@ -17,7 +17,7 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true" />
 
-    <com.wyb.baseui.view.SmartTextView
+    <com.basics.ui.view.SmartTextView
         android:id="@+id/iv_hint_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

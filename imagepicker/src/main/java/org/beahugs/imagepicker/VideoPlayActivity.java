@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.donkingliang.imageselector.R;
-import com.wyb.videoplay.view.VideoPlayer;
+import com.basics.videoplay.view.VideoPlayer;
 
 import java.io.File;
 

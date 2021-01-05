@@ -39,7 +39,7 @@
             android:gravity="center_vertical"
             android:text="00:00"/>
 
-        <com.wyb.videoplay.view.CustomSeekBar
+        <com.basics.videoplay.view.CustomSeekBar
             android:id="@+id/csb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

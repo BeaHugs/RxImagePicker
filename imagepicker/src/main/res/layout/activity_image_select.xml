@@ -63,7 +63,7 @@
         android:layout_below="@+id/rl_top_bar"
         tools:layoutAnimation="@null">
 
-        <com.wyb.baseui.widget.statusview.HintLayout
+        <com.basics.ui.widget.statusview.HintLayout
             android:id="@+id/hl_image_select_hint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -80,7 +80,7 @@
                 tools:layoutManager="GridLayoutManager"
                 tools:spanCount="3" />
 
-        </com.wyb.baseui.widget.statusview.HintLayout>
+        </com.basics.ui.widget.statusview.HintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_image_select_floating"
